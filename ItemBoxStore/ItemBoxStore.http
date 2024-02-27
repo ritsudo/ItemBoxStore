@@ -1,0 +1,6 @@
+@ItemBoxStore_HostAddress = http://localhost:5085
+
+GET {{ItemBoxStore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
