@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAccess\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ItemBoxStore.Application\ItemBoxStore.Application.csproj" />
+    <ProjectReference Include="..\ItemBoxStore.Domain\ItemBoxStore.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
