@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.API", "src\ItemBoxStore.API\ItemBoxStore.API.csproj", "{7CCC953E-A29A-434E-96E7-9B2D00854447}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.API", "Hosts\ItemBoxStore.API\ItemBoxStore.API.csproj", "{7CCC953E-A29A-434E-96E7-9B2D00854447}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBoxStore.Domain", "src\ItemBoxStore.Domain\ItemBoxStore.Domain.csproj", "{B79E0A10-010C-43FD-92D8-63A88F73D741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Domain", "Domain\ItemBoxStore.Domain\ItemBoxStore.Domain.csproj", "{B79E0A10-010C-43FD-92D8-63A88F73D741}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBoxStore.Application", "src\ItemBoxStore.Application\ItemBoxStore.Application.csproj", "{4D9349E4-E31E-4068-8C0D-2F5F44A3E4E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Application", "Application\ItemBoxStore.Application\ItemBoxStore.Application.csproj", "{4D9349E4-E31E-4068-8C0D-2F5F44A3E4E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBoxStore.Infrastructure", "src\ItemBoxStore.Infrastructure\ItemBoxStore.Infrastructure.csproj", "{0B21F619-9F9A-43B2-A582-8D6D0EE4C76D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Infrastructure", "Infrastructure\ItemBoxStore.Infrastructure\ItemBoxStore.Infrastructure.csproj", "{0B21F619-9F9A-43B2-A582-8D6D0EE4C76D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBoxStore.Contracts", "Contracts\ItemBoxStore.Contracts\ItemBoxStore.Contracts.csproj", "{EE6D94C8-D232-48E9-ACD8-04D90B96F443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0B21F619-9F9A-43B2-A582-8D6D0EE4C76D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B21F619-9F9A-43B2-A582-8D6D0EE4C76D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B21F619-9F9A-43B2-A582-8D6D0EE4C76D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

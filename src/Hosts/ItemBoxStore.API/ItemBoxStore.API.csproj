@@ -14,7 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ItemBoxStore.Application\ItemBoxStore.Application.csproj" />
+    <ProjectReference Include="..\..\Application\ItemBoxStore.Application\ItemBoxStore.Application.csproj" />
+    <ProjectReference Include="..\..\Contracts\ItemBoxStore.Contracts\ItemBoxStore.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

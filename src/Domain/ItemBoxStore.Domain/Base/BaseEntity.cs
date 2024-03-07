@@ -19,16 +19,16 @@ namespace ItemBoxStore.Domain.Base
         /// <summary>
         /// Дата создания сущности
         /// </summary>
-        public DateTime CreateDate { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// Дата обновления сущности (nullable)
         /// </summary>
-        public DateTime? UpdateDate { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         /// <summary>
         /// Дата удаления сущности (nullable)
         /// </summary>
-        public DateTime DeleteDate { get; set; }
+        public DateTime? DeletedAt { get; set; }
     }
 }

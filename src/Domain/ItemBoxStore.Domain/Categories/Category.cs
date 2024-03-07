@@ -19,6 +19,6 @@ namespace ItemBoxStore.Domain.Categories
         /// <summary>
         /// Список подкатегорий
         /// </summary>
-        public ICollection<SubCategory> SubCategories { get; set; };
+        public ICollection<SubCategory> SubCategories { get; set; }
     }
 }
