@@ -12,7 +12,7 @@ namespace ItemBoxStore.Contracts.Items
         /// <summary>
         /// Запрос для получения объявления
         /// </summary>
-        public class Request
+        public class GetItemRequest
         {
             /// <summary>
             /// Идентификатор получаемого объявления
@@ -23,7 +23,7 @@ namespace ItemBoxStore.Contracts.Items
         /// <summary>
         /// Ответ - данные объявления
         /// </summary>
-        public class Response
+        public class GetItemResponse
         {
             /// <summary>
             /// Название объявления

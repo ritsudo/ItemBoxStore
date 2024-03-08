@@ -12,25 +12,30 @@ namespace ItemBoxStore.Contracts.Items
         /// <summary>
         /// Запрос для обновления объявления
         /// </summary>
-        public class Request
+        public class UpdateItemRequest
         {
             /// <summary>
-            /// Название объявления
+            /// Идентификатор обновляемого объявления
+            /// </summary>
+            public Guid Id { get; set; }
+
+            /// <summary>
+            /// Новое название объявления
             /// </summary>
             public string Name { get; set; }
 
             /// <summary>
-            /// ID подкатегории объявления
+            /// Новый ID подкатегории объявления
             /// </summary>
             public int SubCategoryId { get; set; }
 
             /// <summary>
-            /// Описание объявления
+            /// Новое описание объявления
             /// </summary>
             public string Description { get; set; }
 
             /// <summary>
-            /// Стоимость товара
+            /// Новая стоимость товара
             /// </summary>
             public decimal Price { get; set; }
         }

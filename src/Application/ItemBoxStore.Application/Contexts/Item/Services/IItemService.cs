@@ -15,7 +15,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> CreateAsync(CreateItem.Request request, CancellationToken cancellationToken);
+        Task<Guid> CreateAsync(CreateItem.CreateItemRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить объявление по ID
@@ -23,7 +23,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<GetItem.Response> GetById(GetItem.Request request, CancellationToken cancellationToken);
+        Task<GetItem.GetItemResponse> GetById(GetItem.GetItemRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновить объявление
@@ -31,7 +31,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task Update(UpdateItem.Request request, CancellationToken cancellationToken);
+        Task<Guid> UpdateAsync(UpdateItem.UpdateItemRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удалить объявление
@@ -39,7 +39,15 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task Delete(DeleteItem.Request request, CancellationToken cancellationToken);
+        Task Delete(DeleteItem.DeleteItemRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить получить все объявления
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<GetPaged.GetPagedResponse> GetAll(GetPaged.GetPagedRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить страницу с объявлениями (offset, count)
@@ -47,7 +55,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<GetPaged.Response> GetPaged(GetPaged.Request request, CancellationToken cancellationToken);
+        Task<GetPaged.GetPagedResponse> GetPaged(GetPaged.GetPagedRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Добавить картинку в объявление
@@ -55,6 +63,6 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task AddImage(AddImage.Request request, CancellationToken cancellationToken);
+        Task AddImage(AddImage.AddImageRequest request, CancellationToken cancellationToken);
     }
 }

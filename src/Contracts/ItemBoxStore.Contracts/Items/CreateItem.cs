@@ -11,7 +11,7 @@ namespace ItemBoxStore.Contracts.Items
         /// <summary>
         /// Запрос для создания нового объявления
         /// </summary>
-        public class Request
+        public class CreateItemRequest
         {
             /// <summary>
             /// Название объявления

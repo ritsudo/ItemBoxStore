@@ -21,6 +21,10 @@ namespace ItemBoxStore.Domain.Users
         /// </summary>
         public string Email { get; set; }
         /// <summary>
+        /// Подтверждена ли почта
+        /// </summary>
+        public bool EmailConfirmed { get; set; }
+        /// <summary>
         /// Имя пользователя
         /// </summary>
         public string Name { get; set; }

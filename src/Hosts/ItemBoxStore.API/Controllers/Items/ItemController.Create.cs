@@ -8,11 +8,11 @@ namespace ItemBoxStore.API.Controllers.Items
         /// <summary>
         /// Добавить объявление
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="createRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Create(CreateItem.Request request, CancellationToken cancellationToken)
+        public async Task<IActionResult> Create(CreateItem.CreateItemRequest request, CancellationToken cancellationToken)
         {
             var result = await _itemService.CreateAsync(request, cancellationToken);
             return Created(nameof(result), result);

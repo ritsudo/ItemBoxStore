@@ -8,7 +8,7 @@ namespace ItemBoxStore.Contracts.Items
 {
     public class AddImage
     {
-        public class Request
+        public class AddImageRequest
         {
 
         }

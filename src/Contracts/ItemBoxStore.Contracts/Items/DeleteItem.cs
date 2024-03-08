@@ -11,7 +11,7 @@ namespace ItemBoxStore.Contracts.Items
         /// <summary>
         /// Запрос для удаления объявления
         /// </summary>
-        public class Request
+        public class DeleteItemRequest
         {
             /// <summary>
             /// Идентификатор удаляемого объявления

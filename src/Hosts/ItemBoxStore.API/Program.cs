@@ -1,5 +1,6 @@
 using ItemBoxStore.Application.Contexts.Item.Services;
 using ItemBoxStore.Application.Contexts.User.Services;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,12 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(gen =>
+{
+    var xmlFilePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilePath);
+    gen.IncludeXmlComments(xmlPath);
+});
 
 var app = builder.Build();
 

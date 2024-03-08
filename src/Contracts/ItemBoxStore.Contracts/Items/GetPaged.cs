@@ -8,12 +8,12 @@ namespace ItemBoxStore.Contracts.Items
 {
     public class GetPaged
     {
-        public class Request
+        public class GetPagedRequest
         {
 
         }
 
-        public class Response
+        public class GetPagedResponse
         {
 
         }
