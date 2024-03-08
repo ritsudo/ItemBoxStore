@@ -12,7 +12,20 @@ namespace ItemBoxStore.Application.Contexts.User.Services
     /// </summary>
     public interface IUserService
     {
-        Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<Guid> CreateAsync(CreateUserDto model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить пользователя по id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     }
 }

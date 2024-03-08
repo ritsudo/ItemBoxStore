@@ -17,14 +17,17 @@ namespace ItemBoxStore.Contracts.Users
         /// Логин пользователя
         /// </summary>
         public string Login { get; set; }
+
         /// <summary>
         /// E-mail пользователя
         /// </summary>
         public string Email { get; set; }
+
         /// <summary>
         /// Имя пользователя
         /// </summary>
         public string Name { get; set; }
+
         /// <summary>
         /// Телефон
         /// </summary>

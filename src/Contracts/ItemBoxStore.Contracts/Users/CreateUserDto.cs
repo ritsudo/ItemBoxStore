@@ -24,7 +24,7 @@ namespace ItemBoxStore.Contracts.Users
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// Телефон
+        /// Телефон  пользователя
         /// </summary>
         public string Phone { get; set; }
     }
