@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ItemBoxStore.Application.Contexts.User.Services
 {
     /// <summary>
-    /// Инициализирует экземпляр UserRepository
+    /// Инициализирует экземпляр UserService
     /// </summary>
     public class UserService : IUserService
     {

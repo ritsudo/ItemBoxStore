@@ -15,7 +15,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<CreateItem.Response> Create(CreateItem.Request request, CancellationToken cancellationToken);
+        Task<Guid> CreateAsync(CreateItem.Request request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить объявление по ID
@@ -31,7 +31,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task <UpdateItem.Response> Update(UpdateItem.Request request, CancellationToken cancellationToken);
+        Task Update(UpdateItem.Request request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удалить объявление

@@ -8,9 +8,15 @@ namespace ItemBoxStore.Contracts.Items
 {
     public class DeleteItem
     {
+        /// <summary>
+        /// Запрос для удаления объявления
+        /// </summary>
         public class Request
         {
-
+            /// <summary>
+            /// Идентификатор удаляемого объявления
+            /// </summary>
+            public Guid Id { get; set; }
         }
     }
 }

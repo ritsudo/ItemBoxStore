@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Infrastructure", "Infrastructure\ItemBoxStore.Infrastructure\ItemBoxStore.Infrastructure.csproj", "{0B21F619-9F9A-43B2-A582-8D6D0EE4C76D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemBoxStore.Contracts", "Contracts\ItemBoxStore.Contracts\ItemBoxStore.Contracts.csproj", "{EE6D94C8-D232-48E9-ACD8-04D90B96F443}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Contracts", "Contracts\ItemBoxStore.Contracts\ItemBoxStore.Contracts.csproj", "{EE6D94C8-D232-48E9-ACD8-04D90B96F443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
