@@ -1,6 +1,7 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Contracts.Users;
 using Microsoft.AspNetCore.Mvc;
+using static ItemBoxStore.Contracts.Images.GetImage;
 
 namespace ItemBoxStore.API.Controllers.Users
 {
@@ -15,7 +16,8 @@ namespace ItemBoxStore.API.Controllers.Users
         [Route(template: "all")]
         public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
         {
-            return Ok();
+            var result = await _userService.GetUsersAsync(cancellationToken);
+            return Ok(result);
         }
     }
 }

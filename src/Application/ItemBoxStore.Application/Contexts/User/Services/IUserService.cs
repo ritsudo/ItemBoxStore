@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
 
 namespace ItemBoxStore.Application.Contexts.User.Services
@@ -27,5 +28,12 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить всех пользователей
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken);
     }
 }

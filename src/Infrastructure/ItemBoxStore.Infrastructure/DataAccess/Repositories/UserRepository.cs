@@ -11,15 +11,36 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     /// <inheritdoc />
     public class UserRepository : IUserRepository
     {
+        List<UserDto> UserList = new List<UserDto> {
+            new UserDto { 
+                Id = Guid.NewGuid(),
+                Name = "User 1"
+            },
+            new UserDto { 
+                Id = Guid.NewGuid(),
+                Name = "User 2"}
+        };
+
         /// <inheritdoc/>
-        public Task<IEnumerable<UserDto>> GetAll(CancellationToken cancellationToken)
+        public Task<Guid> CreateAsync(CreateUserDto userDto, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IReadOnlyCollection<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
+        /// <inheritdoc/>
+        public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+        }
+
+        /// <inheritdoc/>
+        public Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
+        {
+            return Task.Run(() => UserList.Select(u => new UserDto
+            {
+                Id = u.Id,
+                Name = u.Name
+            }));
         }
     }
 }

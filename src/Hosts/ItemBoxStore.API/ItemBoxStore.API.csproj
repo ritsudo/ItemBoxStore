@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Application\ItemBoxStore.Application\ItemBoxStore.Application.csproj" />
     <ProjectReference Include="..\..\Contracts\ItemBoxStore.Contracts\ItemBoxStore.Contracts.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ItemBoxStore.Infrastructure\ItemBoxStore.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

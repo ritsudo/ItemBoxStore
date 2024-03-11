@@ -1,10 +1,13 @@
 using ItemBoxStore.Application.Contexts.Item.Services;
 using ItemBoxStore.Application.Contexts.User.Services;
+using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Infrastructure.DataAccess.Repositories;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IItemService, ItemService>();
 

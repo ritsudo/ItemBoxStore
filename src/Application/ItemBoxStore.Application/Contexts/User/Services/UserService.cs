@@ -13,16 +13,29 @@ namespace ItemBoxStore.Application.Contexts.User.Services
     /// </summary>
     public class UserService : IUserService
     {
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
+
         /// <inheritdoc/>
         public Task<Guid> CreateAsync(CreateUserDto model, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _userRepository.CreateAsync(model, cancellationToken);
         }
 
         /// <inheritdoc/>
         public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetByIdAsync(id, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
+        {
+            return _userRepository.GetUsersAsync(cancellationToken);
         }
     }
 }
