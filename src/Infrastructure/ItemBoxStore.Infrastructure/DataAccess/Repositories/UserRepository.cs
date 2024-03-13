@@ -1,5 +1,7 @@
 ﻿using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
+using ItemBoxStore.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +13,8 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     /// <inheritdoc />
     public class UserRepository : IUserRepository
     {
+        private readonly IRepository<UserDto> _repository;
+
         List<UserDto> UserList = new List<UserDto> {
             new UserDto { 
                 Id = Guid.NewGuid(),
@@ -30,17 +34,21 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         /// <inheritdoc/>
         public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
+            var user = _repository.GetByIdAsync;
+
             throw new NotImplementedException();
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
+        public async Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
         {
-            return Task.Run(() => UserList.Select(u => new UserDto
+            var userList = await _repository.GetAll().ToListAsync(cancellationToken);
+
+            return userList.Select(u => new UserDto
             {
                 Id = u.Id,
                 Name = u.Name
-            }));
+            });
         }
     }
 }
