@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
+using ItemBoxStore.Domain.Users;
 using ItemBoxStore.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -13,17 +14,12 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     /// <inheritdoc />
     public class UserRepository : IUserRepository
     {
-        private readonly IRepository<UserDto> _repository;
+        private readonly IRepository<User> _repository;
 
-        List<UserDto> UserList = new List<UserDto> {
-            new UserDto { 
-                Id = Guid.NewGuid(),
-                Name = "User 1"
-            },
-            new UserDto { 
-                Id = Guid.NewGuid(),
-                Name = "User 2"}
-        };
+        public UserRepository(IRepository<User> repository)
+        {
+            _repository = repository;
+        }
 
         /// <inheritdoc/>
         public Task<Guid> CreateAsync(CreateUserDto userDto, CancellationToken cancellationToken)

@@ -1,15 +1,23 @@
 using ItemBoxStore.Application.Contexts.Item.Services;
 using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Infrastructure;
 using ItemBoxStore.Infrastructure.DataAccess.Repositories;
+using ItemBoxStore.Infrastructure.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IUserService, UserService>();
-builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection")));
+builder.Services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbContext>());
+
+builder.Services.AddTransient<IItemService, ItemService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
