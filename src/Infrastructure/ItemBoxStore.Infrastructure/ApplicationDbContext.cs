@@ -13,7 +13,8 @@ namespace ItemBoxStore.Infrastructure
     {
         public DbSet<User> Users {get;set;}
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions) : base(dbContextOptions) {
+        public ApplicationDbContext(DbContextOptions options) : base(options)
+        {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.Contracts", "Contracts\ItemBoxStore.Contracts\ItemBoxStore.Contracts.csproj", "{EE6D94C8-D232-48E9-ACD8-04D90B96F443}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DbMigrator", "DbMigrator", "{82F6E638-E3B5-4951-A143-B7C959791718}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.DbMigrator", "DbMigrator\ItemBoxStore.DbMigrator.csproj", "{3803A0AA-9323-466A-BD92-EEDBF85231BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{75A74D53-7F09-472F-B776-8436EF9C0277}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,9 +45,16 @@ Global
 		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE6D94C8-D232-48E9-ACD8-04D90B96F443}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3803A0AA-9323-466A-BD92-EEDBF85231BD} = {82F6E638-E3B5-4951-A143-B7C959791718}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E138B647-0ACD-43A3-81D5-BAF8410B467F}
