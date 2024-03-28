@@ -21,28 +21,29 @@ namespace ItemBoxStore.Infrastructure.Repository
             DbSet = DbContext.Set<TEntity>();
         }
 
-        public Task AddAsync(TEntity entity)
+        public async Task AddAsync(TEntity entity, CancellationToken cancellationToken)
         {
             if (entity == null)
             {
-                throw new ArgumentException(nameof(entity));
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            DbSet.Add(entity);
-
-            return Task.CompletedTask;
+            await DbSet.AddAsync(entity, cancellationToken);
+            await DbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            if (entity == null)
+            var existingEntity = GetByIdAsync(id, cancellationToken).Result;
+
+            if (existingEntity == null)
             {
-                throw new ArgumentException(nameof(entity));
+                throw new ArgumentNullException(nameof(existingEntity));
             }
 
-            DbSet.Remove(entity);
+            DbSet.Remove(existingEntity);
 
-            return Task.CompletedTask;
+            await DbContext.SaveChangesAsync(cancellationToken);
         }
 
         public IQueryable<TEntity> GetAll()
@@ -60,19 +61,18 @@ namespace ItemBoxStore.Infrastructure.Repository
             return DbSet.Where(predicate).AsNoTracking();
         }
 
-        public Task UpdateAsync(TEntity entity)
+        public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken)
         {
             if (entity == null)
             {
-                throw new ArgumentException(nameof(entity));
+                throw new ArgumentNullException(nameof(entity));
             }
 
             DbSet.Update(entity);
-
-            return Task.CompletedTask;
+            await DbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public ValueTask<TEntity> GetByIdAsync(Guid id)
+        public ValueTask<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return DbSet.FindAsync(id);
         }

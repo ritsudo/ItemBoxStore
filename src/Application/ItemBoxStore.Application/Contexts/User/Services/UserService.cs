@@ -21,13 +21,13 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         }
 
         /// <inheritdoc/>
-        public Task<Guid> CreateAsync(CreateUserDto model, CancellationToken cancellationToken)
+        public Task CreateAsync(UserDto model, CancellationToken cancellationToken)
         {
-            return _userRepository.CreateAsync(model, cancellationToken);
+            return _userRepository.AddAsync(model, cancellationToken);
         }
 
         /// <inheritdoc/>
-        public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return _userRepository.GetByIdAsync(id, cancellationToken);
         }

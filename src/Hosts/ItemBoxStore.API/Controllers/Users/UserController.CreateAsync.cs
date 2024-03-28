@@ -13,10 +13,10 @@ namespace ItemBoxStore.API.Controllers.Users
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(CreateUserDto model, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAsync(UserDto model, CancellationToken cancellationToken)
         {
-            var userId = await _userService.CreateAsync(model, cancellationToken);
-            return Created(nameof(CreateAsync), userId);
+            await _userService.CreateAsync(model, cancellationToken);
+            return Created();
         }
     }
 }

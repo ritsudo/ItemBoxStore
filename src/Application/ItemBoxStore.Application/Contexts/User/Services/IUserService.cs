@@ -19,7 +19,7 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> CreateAsync(CreateUserDto model, CancellationToken cancellationToken);
+        Task CreateAsync(UserDto model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить пользователя по id
@@ -27,7 +27,7 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить всех пользователей

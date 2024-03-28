@@ -31,7 +31,7 @@ namespace ItemBoxStore.Infrastructure.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns><see cref="TEntity"/></returns>
-        ValueTask<TEntity> GetByIdAsync(Guid id);
+        ValueTask<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
     }
 }

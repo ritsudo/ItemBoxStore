@@ -16,23 +16,27 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     {
         private readonly IRepository<User> _repository;
 
+        /// <inheritdoc/>
         public UserRepository(IRepository<User> repository)
         {
             _repository = repository;
         }
 
         /// <inheritdoc/>
-        public Task<Guid> CreateAsync(CreateUserDto userDto, CancellationToken cancellationToken)
+        public ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
-        }
+            var user = _repository.GetByIdAsync(id, cancellationToken).Result;
 
-        /// <inheritdoc/>
-        public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
-        {
-            var user = _repository.GetByIdAsync;
+            var result = new UserDto()
+            {
+                Id = user.Id,
+                Login = user.Login,
+                Email = user.Email,
+                Name = user.Name,
+                Phone = user.Phone,
+            };
 
-            throw new NotImplementedException();
+            return new ValueTask<UserDto>(result);
         }
 
         /// <inheritdoc/>
@@ -45,6 +49,34 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
                 Id = u.Id,
                 Name = u.Name
             });
+        }
+
+        /// <inheritdoc/>
+        public async Task UpdateAsync(UserDto userDto, CancellationToken cancellationToken)
+        {
+            var user = _repository.GetByIdAsync(userDto.Id, cancellationToken).Result;
+            await _repository.UpdateAsync(user, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task AddAsync(UserDto userDto, CancellationToken cancellationToken)
+        {
+            var user = new User()
+            {
+                Id = userDto.Id,
+                Login = userDto.Login,
+                Email = userDto.Email,
+                Name = userDto.Name,
+                Phone = userDto.Phone,
+            };
+
+            await _repository.AddAsync(user, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+        {
+            await _repository.DeleteAsync(id, cancellationToken);
         }
     }
 }

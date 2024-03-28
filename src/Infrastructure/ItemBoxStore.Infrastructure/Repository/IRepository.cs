@@ -18,19 +18,19 @@ namespace ItemBoxStore.Infrastructure.Repository
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task AddAsync(TEntity entity);
+        Task AddAsync(TEntity entity, CancellationToken cancellationToken);
         /// <summary>
         /// Обновляет элемент <see cref="TEntity"/>
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task UpdateAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity, CancellationToken cancellationToken);
         /// <summary>
         /// Удаляет элемент <see cref="TEntity"/>
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task DeleteAsync(TEntity entity);
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
 
     }
 }

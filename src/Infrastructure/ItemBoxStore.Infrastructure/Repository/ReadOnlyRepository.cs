@@ -34,7 +34,7 @@ namespace ItemBoxStore.Infrastructure.Repository
             return DbSet.Where(predicate).AsNoTracking();
         }
 
-        public ValueTask<TEntity> GetByIdAsync(Guid id)
+        public ValueTask<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return DbSet.FindAsync(id);
         }

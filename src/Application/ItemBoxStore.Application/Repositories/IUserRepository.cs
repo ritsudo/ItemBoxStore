@@ -26,7 +26,7 @@ namespace ItemBoxStore.Application.Repositories
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        public ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Создать пользователя
@@ -34,6 +34,18 @@ namespace ItemBoxStore.Application.Repositories
         /// <param name="userDto"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<Guid> CreateAsync(CreateUserDto userDto, CancellationToken cancellationToken);
+        public Task AddAsync(UserDto userDto, CancellationToken cancellationToken);
+        /// <summary>
+        /// Обновить пользователя
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
+        public Task UpdateAsync(UserDto userDto, CancellationToken cancellationToken);
+        /// <summary>
+        /// Удалить пользователя
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
+        public Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     }
 }
