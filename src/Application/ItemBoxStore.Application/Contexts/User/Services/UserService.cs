@@ -21,9 +21,24 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         }
 
         /// <inheritdoc/>
-        public Task CreateAsync(UserDto model, CancellationToken cancellationToken)
+        public async Task<Guid> AddAsync(UserDto model, CancellationToken cancellationToken)
         {
-            return _userRepository.AddAsync(model, cancellationToken);
+            model.Id = Guid.NewGuid();
+            await _userRepository.AddAsync(model, cancellationToken);
+
+            return model.Id;
+        }
+
+        /// <inheritdoc/>
+        public async Task UpdateAsync(UserDto model, CancellationToken cancellationToken)
+        {
+            await _userRepository.UpdateAsync(model, cancellationToken);
+        }
+
+        /// <inheritdoc/>
+        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+        {
+            await _userRepository.DeleteAsync(id, cancellationToken);
         }
 
         /// <inheritdoc/>
@@ -37,5 +52,6 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         {
             return _userRepository.GetUsersAsync(cancellationToken);
         }
+
     }
 }

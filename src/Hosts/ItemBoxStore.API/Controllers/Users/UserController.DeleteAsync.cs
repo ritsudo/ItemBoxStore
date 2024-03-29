@@ -7,16 +7,17 @@ namespace ItemBoxStore.API.Controllers.Users
     public partial class UserController : ControllerBase
     {
         /// <summary>
-        /// Создать новую запись о пользователе
+        /// Удалить пользователя
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [HttpPost]
-        public async Task<IActionResult> CreateAsync(UserDto model, CancellationToken cancellationToken)
+        [HttpDelete("{id:Guid}")]
+        public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            await _userService.CreateAsync(model, cancellationToken);
-            return Created();
+            await _userService.DeleteAsync(id, cancellationToken);
+
+            return Ok();
         }
     }
 }

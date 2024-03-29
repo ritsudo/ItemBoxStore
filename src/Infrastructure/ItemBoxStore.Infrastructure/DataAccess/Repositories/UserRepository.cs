@@ -47,7 +47,10 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
             return userList.Select(u => new UserDto
             {
                 Id = u.Id,
-                Name = u.Name
+                Login = u.Login,
+                Email = u.Email,
+                Name = u.Name,
+                Phone = u.Phone
             });
         }
 

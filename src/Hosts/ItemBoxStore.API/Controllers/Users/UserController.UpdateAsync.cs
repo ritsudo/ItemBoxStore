@@ -7,16 +7,16 @@ namespace ItemBoxStore.API.Controllers.Users
     public partial class UserController : ControllerBase
     {
         /// <summary>
-        /// Вернуть пользователя по Id
+        /// Обновить пользователя
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [HttpGet("{id:Guid}")]
-        public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> UpdateAsync(UserDto model, CancellationToken cancellationToken)
         {
-            var result = await _userService.GetByIdAsync(id, cancellationToken);
-            return Ok(result);
+            await _userService.UpdateAsync(model, cancellationToken);
+            return await Task.Run(() => Ok(new UserDto()), cancellationToken);
         }
     }
 }

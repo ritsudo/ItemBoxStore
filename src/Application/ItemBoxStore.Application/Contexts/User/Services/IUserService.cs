@@ -19,7 +19,23 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task CreateAsync(UserDto model, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(UserDto model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Обновление пользователя
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task UpdateAsync(UserDto model, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удаление пользователя
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить пользователя по id
