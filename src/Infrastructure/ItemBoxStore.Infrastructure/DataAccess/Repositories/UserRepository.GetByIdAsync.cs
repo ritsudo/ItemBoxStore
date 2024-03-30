@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿using AutoMapper.QueryableExtensions;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
 using ItemBoxStore.Domain.Users;
@@ -15,14 +15,12 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     /// <inheritdoc />
     public partial class UserRepository : IUserRepository
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<User> _repository;
-
         /// <inheritdoc/>
-        public UserRepository(IRepository<User> repository, IMapper mapper)
+        public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            _repository = repository;
-            _mapper = mapper;
+            return _repository.GetAll().Where(s => s.Id == id)
+                .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(cancellationToken);
         }
     }
 }

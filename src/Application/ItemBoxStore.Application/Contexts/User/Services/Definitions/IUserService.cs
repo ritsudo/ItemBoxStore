@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
 
-namespace ItemBoxStore.Application.Contexts.User.Services
+namespace ItemBoxStore.Application.Contexts.User.Services.Definitions
 {
     /// <summary>
     /// Сервис для работы с пользователями
@@ -19,7 +19,7 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> AddAsync(UserDto model, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(CreateUserRequest model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновление пользователя

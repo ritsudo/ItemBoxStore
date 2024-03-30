@@ -1,4 +1,4 @@
-﻿using ItemBoxStore.Application.Contexts.User.Services;
+﻿using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Contracts.Users;
 using Microsoft.AspNetCore.Mvc;
 

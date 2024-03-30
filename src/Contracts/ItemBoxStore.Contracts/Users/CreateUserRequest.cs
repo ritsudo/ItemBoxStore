@@ -10,7 +10,7 @@ namespace ItemBoxStore.Contracts.Users
     /// <summary>
     /// Модель создания пользователя
     /// </summary>
-    public class CreateUserDto
+    public class CreateUserRequest
     {
         /// <summary>
         /// Логин пользователя

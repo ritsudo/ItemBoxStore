@@ -1,5 +1,6 @@
 using ItemBoxStore.Application.Contexts.Item.Services;
 using ItemBoxStore.Application.Contexts.User.Services;
+using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Infrastructure;
 using ItemBoxStore.Infrastructure.DataAccess.Repositories;
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddServices();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));

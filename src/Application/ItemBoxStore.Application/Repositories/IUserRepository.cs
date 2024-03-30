@@ -1,4 +1,5 @@
 ﻿using ItemBoxStore.Contracts.Users;
+using ItemBoxStore.Domain.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace ItemBoxStore.Application.Repositories
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Создать пользователя
@@ -34,7 +35,7 @@ namespace ItemBoxStore.Application.Repositories
         /// <param name="userDto"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task AddAsync(UserDto userDto, CancellationToken cancellationToken);
+        public Task AddAsync(User userDto, CancellationToken cancellationToken);
         /// <summary>
         /// Обновить пользователя
         /// </summary>

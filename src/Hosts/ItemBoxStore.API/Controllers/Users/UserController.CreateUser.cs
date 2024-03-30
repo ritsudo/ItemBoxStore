@@ -16,7 +16,7 @@ namespace ItemBoxStore.API.Controllers.Users
         [HttpPost]
         [ProducesResponseType(typeof(UserDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> CreateUser(CreateUserDto model, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateUser(CreateUserRequest model, CancellationToken cancellationToken)
         {
             var dto = new UserDto {
                 Email = model.Email,
@@ -25,7 +25,7 @@ namespace ItemBoxStore.API.Controllers.Users
                 Phone = model.Phone
             };
 
-            var result = await _userService.AddAsync(dto, cancellationToken);
+            var result = await _userService.AddAsync(model, cancellationToken);
             return CreatedAtAction(nameof(CreateUser), new { result });
         }
     }
