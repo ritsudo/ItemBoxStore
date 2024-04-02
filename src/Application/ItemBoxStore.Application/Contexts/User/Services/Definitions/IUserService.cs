@@ -42,14 +42,21 @@ namespace ItemBoxStore.Application.Contexts.User.Services.Definitions
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>Пользователь</returns>
         ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить всех пользователей
         /// </summary>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken);
+        /// <returns>Список абсолютно всех пользователей</returns>
+        public Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить всех пользователей по имени
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Коллекция моделей пользователей</returns>
+        public Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken);
     }
 }

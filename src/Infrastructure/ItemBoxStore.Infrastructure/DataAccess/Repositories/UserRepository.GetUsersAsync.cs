@@ -16,11 +16,25 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     public partial class UserRepository : IUserRepository
     {
         /// <inheritdoc/>
-        public async Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken)
+        public async Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAll()
+            var result = new GetAllResponseWithPagination<UserDto>();
+
+            var query = _repository.GetAll();
+
+            var totalCount = await query.CountAsync(cancellationToken);
+            result.TotalPages = (totalCount / request.BatchSize) + 1;
+
+            var paginationQuery = await query
+                .OrderBy(user => user.Id)
+                .Skip(request.BatchSize * (request.PageNumber - 1))
+                .Take(request.BatchSize)
                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
+                .ToArrayAsync(cancellationToken);
+
+            result.Result = paginationQuery;
+
+            return result;
         }
 
     }

@@ -19,7 +19,14 @@ namespace ItemBoxStore.Application.Repositories
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<IEnumerable<UserDto>> GetUsersAsync(CancellationToken cancellationToken);
+        public Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить список пользователей по имени
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить пользователя по ID

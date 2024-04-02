@@ -1,7 +1,6 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Contracts.Users;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 using static ItemBoxStore.Contracts.Images.GetImage;
 
 namespace ItemBoxStore.API.Controllers.Users
@@ -9,17 +8,16 @@ namespace ItemBoxStore.API.Controllers.Users
     public partial class UserController : ControllerBase
     {
         /// <summary>
-        /// Возвращает список пользователей
+        /// Возвращает список пользователей по имени
         /// </summary>
-        /// <param name="request">Запрос на получение пользователей с пагинацией</param>
+        /// <param name="request">Запрос</param>
         /// <param name="cancellationToken">Токен отмены операции</param>
         /// <returns>Список пользователей</returns>
         [HttpGet]
-        [Route(template: "all")]
-        [ProducesResponseType(typeof(GetAllResponseWithPagination<UserDto>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersRequest request, CancellationToken cancellationToken)
+        [Route(template: "by-name")]
+        public async Task<IActionResult> GetAllByName([FromQuery] GetUsersByNameRequest request, CancellationToken cancellationToken)
         {
-            var result = await _userService.GetUsersAsync(request, cancellationToken);
+            var result = await _userService.GetUsersByNameAsync(request, cancellationToken);
             return Ok(result);
         }
     }

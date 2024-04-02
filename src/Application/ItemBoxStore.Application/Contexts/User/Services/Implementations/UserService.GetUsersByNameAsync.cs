@@ -16,9 +16,9 @@ namespace ItemBoxStore.Application.Contexts.User.Services
     {
 
         /// <inheritdoc/>
-        public Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken)
+        public Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken)
         {
-            return _userRepository.GetUsersAsync(request, cancellationToken);
+            return _userRepository.GetUsersByNameAsync(request, cancellationToken);
         }
     }
 }
