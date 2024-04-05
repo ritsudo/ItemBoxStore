@@ -1,4 +1,5 @@
-using ItemBoxStore.Application.Contexts.Item.Services;
+using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
+using ItemBoxStore.Application.Contexts.Item.Services.Implementations;
 using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
@@ -14,7 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddServices();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IStorageFileService, StorageFileService>();
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IStorageFileRepository, StorageFileRepository>();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection")));
 builder.Services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbContext>());

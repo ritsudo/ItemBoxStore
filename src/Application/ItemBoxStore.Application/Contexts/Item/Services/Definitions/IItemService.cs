@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ItemBoxStore.Application.Contexts.Item.Services
+namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
 {
     public interface IItemService
     {

@@ -25,10 +25,5 @@ namespace ItemBoxStore.Domain.Base
         /// Дата обновления сущности (nullable)
         /// </summary>
         public DateTime? UpdatedAt { get; set; }
-
-        /// <summary>
-        /// Дата удаления сущности (nullable)
-        /// </summary>
-        public DateTime? DeletedAt { get; set; }
     }
 }

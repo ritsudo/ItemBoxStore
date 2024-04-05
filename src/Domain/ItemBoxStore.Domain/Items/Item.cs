@@ -36,7 +36,7 @@ namespace ItemBoxStore.Domain.Items
         /// <summary>
         /// ID автора объявления
         /// </summary>
-        public int AuthorId { get; set; }
+        public Guid AuthorId { get; set; }
 
         /// <summary>
         /// Состояние объявления
@@ -50,6 +50,6 @@ namespace ItemBoxStore.Domain.Items
         /// <summary>
         /// Коллекция изображений
         /// </summary>
-        public virtual ICollection<Image>? Images { get; set; }
+        public virtual ICollection<StorageFile>? Images { get; set; }
     }
 }

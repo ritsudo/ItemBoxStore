@@ -26,6 +26,7 @@ namespace ItemBoxStore.Infrastructure
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<UserProfile>();
+                cfg.AddProfile<StorageFileProfile>();
             });
             config.AssertConfigurationIsValid();
             return config;

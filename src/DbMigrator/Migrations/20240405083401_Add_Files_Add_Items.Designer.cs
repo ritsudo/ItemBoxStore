@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ItemBoxStore.DbMigrator.Migrations
 {
     [DbContext(typeof(MigrationDbContext))]
-    partial class MigrationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240405083401_Add_Files_Add_Items")]
+    partial class Add_Files_Add_Items
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +39,9 @@ namespace ItemBoxStore.DbMigrator.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("FileLength")
@@ -70,11 +76,14 @@ namespace ItemBoxStore.DbMigrator.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("AuthorId")
+                    b.Property<int>("AuthorId")
                         .HasMaxLength(255)
-                        .HasColumnType("uuid");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
@@ -110,6 +119,9 @@ namespace ItemBoxStore.DbMigrator.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")

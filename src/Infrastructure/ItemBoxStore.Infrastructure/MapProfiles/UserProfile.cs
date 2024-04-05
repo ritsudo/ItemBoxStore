@@ -19,7 +19,6 @@ namespace ItemBoxStore.Infrastructure.MapProfiles
                 .ForMember(s => s.Id, map => map.MapFrom(s => Guid.NewGuid()))
                 .ForMember(s => s.CreatedAt, map => map.MapFrom(s => DateTime.UtcNow))
                 .ForMember(s => s.UpdatedAt, map => map.MapFrom(s => DateTime.UtcNow))
-                .ForMember(s => s.DeletedAt, map => map.MapFrom(s => DateTime.UtcNow))
                 .ForMember(s => s.EmailConfirmed, map => map.MapFrom(s => false));
         }
     }

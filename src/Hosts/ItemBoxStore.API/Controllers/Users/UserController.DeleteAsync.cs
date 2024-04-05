@@ -7,13 +7,13 @@ namespace ItemBoxStore.API.Controllers.Users
     public partial class UserController : ControllerBase
     {
         /// <summary>
-        /// Удалить пользователя
+        /// Удалить файл
         /// </summary>
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpDelete("{id:Guid}")]
-        public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteFile(Guid id, CancellationToken cancellationToken)
         {
             await _userService.DeleteAsync(id, cancellationToken);
 

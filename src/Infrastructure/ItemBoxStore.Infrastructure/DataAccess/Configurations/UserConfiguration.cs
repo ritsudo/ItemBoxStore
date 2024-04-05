@@ -9,8 +9,12 @@ using System.Threading.Tasks;
 
 namespace ItemBoxStore.Infrastructure.DataAccess.Configurations
 {
+    /// <summary>
+    /// Файл конфигурации сущности пользователя
+    /// </summary>
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
+        /// <inheritdoc/>
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder

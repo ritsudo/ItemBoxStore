@@ -1,4 +1,5 @@
-﻿using ItemBoxStore.Contracts.Users;
+﻿using ItemBoxStore.Application.Specifications;
+using ItemBoxStore.Contracts.Users;
 using ItemBoxStore.Domain.Users;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,19 @@ namespace ItemBoxStore.Application.Repositories
         /// <summary>
         /// Получить список пользователей по имени
         /// </summary>
+        /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         public Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить список пользователей по спецификации
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<UserDto>> GetUsersBySpecificationAsync(Specification<User> request, CancellationToken cancellationToken);
+
 
         /// <summary>
         /// Получить пользователя по ID

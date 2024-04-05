@@ -1,5 +1,5 @@
 ﻿using ItemBoxStore.API.Controllers.Users;
-using ItemBoxStore.Application.Contexts.Item.Services;
+using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItemBoxStore.API.Controllers.Items

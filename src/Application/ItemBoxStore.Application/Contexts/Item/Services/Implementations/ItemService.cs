@@ -1,11 +1,12 @@
-﻿using ItemBoxStore.Contracts.Items;
+﻿using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
+using ItemBoxStore.Contracts.Items;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ItemBoxStore.Application.Contexts.Item.Services
+namespace ItemBoxStore.Application.Contexts.Item.Services.Implementations
 {
     /// <summary>
     /// Инициализирует экземпляр UserService

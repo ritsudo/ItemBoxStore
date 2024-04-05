@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
+namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 {
     /// <inheritdoc />
     public class ItemRepository : IItemRepository

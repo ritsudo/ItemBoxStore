@@ -20,6 +20,8 @@ namespace ItemBoxStore.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            modelBuilder.ApplyConfiguration(new FileConfiguration());
         }
     }
 

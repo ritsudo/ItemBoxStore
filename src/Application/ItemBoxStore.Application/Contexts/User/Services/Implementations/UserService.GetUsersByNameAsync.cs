@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Application.Specifications;
 using ItemBoxStore.Contracts.Users;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,8 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <inheritdoc/>
         public Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken)
         {
-            return _userRepository.GetUsersByNameAsync(request, cancellationToken);
+            var specification = new UserByNameSpecification(request.Name);
+            return _userRepository.GetUsersBySpecificationAsync(specification, cancellationToken);
         }
     }
 }

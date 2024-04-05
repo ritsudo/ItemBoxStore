@@ -10,16 +10,28 @@ namespace ItemBoxStore.Domain.Images
     /// <summary>
     /// Класс для сущности изображения
     /// </summary>
-    public class Image : BaseEntity
+    public class StorageFile : BaseEntity
     {
         /// <summary>
-        /// Название изображения
+        /// Название файла
         /// </summary>
         public string FileName { get; set; }
+
         /// <summary>
-        /// Тип изображения
+        /// Содержание файла
+        /// </summary>
+        public byte[] Content { get; set; }
+
+        /// <summary>
+        /// Тип файла
         /// </summary>
         public string ContentType { get; set; }
+
+        /// <summary>
+        /// Длина содержимого файла
+        /// </summary>
+        public int FileLength { get;set; }
+
         /// <summary>
         /// Название картинки в хранилище
         /// </summary>

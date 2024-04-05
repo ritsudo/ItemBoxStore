@@ -2,7 +2,6 @@
 using ItemBoxStore.Contracts.Users;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using static ItemBoxStore.Contracts.Images.GetImage;
 
 namespace ItemBoxStore.API.Controllers.Users
 {
