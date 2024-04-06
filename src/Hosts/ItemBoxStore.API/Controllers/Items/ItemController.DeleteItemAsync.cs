@@ -1,5 +1,4 @@
-﻿using ItemBoxStore.Contracts.Items;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ItemBoxStore.API.Controllers.Items
 {
@@ -12,14 +11,11 @@ namespace ItemBoxStore.API.Controllers.Items
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(
-            [FromRoute] Guid id, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteItemAsync(Guid id, CancellationToken cancellationToken)
         {
-            await _itemService.Delete(new DeleteItem.DeleteItemRequest
-            {
-                Id = id
-            }, cancellationToken);
-            return NoContent();
+            await _itemService.DeleteAsync(id, cancellationToken);
+
+            return Ok();
         }
     }
 }

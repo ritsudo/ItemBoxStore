@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ItemBoxStore.Contracts.Users
+namespace ItemBoxStore.Contracts
 {
     /// <summary>
     /// Ответ на запрос получения данных

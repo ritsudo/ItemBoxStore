@@ -1,21 +1,21 @@
-﻿using ItemBoxStore.Application.Repositories;
-using ItemBoxStore.Contracts.Items;
-using ItemBoxStore.Contracts.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Domain.Items;
+using ItemBoxStore.Infrastructure.Repository;
 
 namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 {
     /// <inheritdoc />
-    public class ItemRepository : IItemRepository
+    public partial class ItemRepository : IItemRepository
     {
+        private readonly IMapper _mapper;
+        private readonly IRepository<Item> _repository;
+
         /// <inheritdoc/>
-        public Task<IReadOnlyCollection<GetItem.GetItemResponse>> GetItemsAsync(CancellationToken cancellationToken)
+        public ItemRepository(IRepository<Item> repository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
         }
     }
 }

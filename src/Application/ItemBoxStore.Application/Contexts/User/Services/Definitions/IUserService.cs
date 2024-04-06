@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Contracts;
 using ItemBoxStore.Contracts.Users;
 
 namespace ItemBoxStore.Application.Contexts.User.Services.Definitions

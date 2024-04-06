@@ -1,18 +1,18 @@
 ﻿using AutoMapper.QueryableExtensions;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts;
-using ItemBoxStore.Contracts.Users;
+using ItemBoxStore.Contracts.Items;
 using Microsoft.EntityFrameworkCore;
 
-namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
+namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 {
     /// <inheritdoc />
-    public partial class UserRepository : IUserRepository
+    public partial class ItemRepository : IItemRepository
     {
-        /// <inheritdoc/>
-        public async Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken)
+
+        public async Task<GetAllResponseWithPagination<ItemDto>> GetItemsAsync(GetAllItemsRequest request, CancellationToken cancellationToken)
         {
-            var result = new GetAllResponseWithPagination<UserDto>();
+            var result = new GetAllResponseWithPagination<ItemDto>();
 
             var query = _repository.GetAll();
 
@@ -20,10 +20,10 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
             result.TotalPages = (totalCount / request.BatchSize) + 1;
 
             var paginationQuery = await query
-                .OrderBy(user => user.Id)
+                .OrderBy(item => item.Id)
                 .Skip(request.BatchSize * (request.PageNumber - 1))
                 .Take(request.BatchSize)
-                .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<ItemDto>(_mapper.ConfigurationProvider)
                 .ToArrayAsync(cancellationToken);
 
             result.Result = paginationQuery;

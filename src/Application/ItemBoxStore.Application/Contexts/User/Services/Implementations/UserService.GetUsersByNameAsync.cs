@@ -17,10 +17,10 @@ namespace ItemBoxStore.Application.Contexts.User.Services
     {
 
         /// <inheritdoc/>
-        public Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UserDto>> GetUsersByNameAsync(GetUsersByNameRequest request, CancellationToken cancellationToken)
         {
             var specification = new UserByNameSpecification(request.Name);
-            return _userRepository.GetUsersBySpecificationAsync(specification, cancellationToken);
+            return await _userRepository.GetUsersBySpecificationAsync(specification, cancellationToken);
         }
     }
 }

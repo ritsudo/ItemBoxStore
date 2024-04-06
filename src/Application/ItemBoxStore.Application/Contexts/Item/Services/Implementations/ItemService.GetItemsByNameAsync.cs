@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
+﻿using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Application.Specifications;
 using ItemBoxStore.Contracts.Items;
 using ItemBoxStore.Contracts.Users;
 using System;
@@ -16,13 +16,10 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Implementations
     /// </summary>
     public partial class ItemService : IItemService
     {
-        private readonly IItemRepository _itemRepository;
-        private readonly IMapper _mapper;
-
-        public ItemService(IItemRepository itemRepository, IMapper mapper)
+        public async Task<IEnumerable<ItemDto>> GetItemsByNameAsync(GetItemsByNameRequest request, CancellationToken cancellationToken)
         {
-            _itemRepository = itemRepository;
-            _mapper = mapper;
+            var specification = new ItemByNameSpecification(request.Name);
+            return await _itemRepository.GetItemsBySpecificationAsync(specification, cancellationToken);
         }
 
     }

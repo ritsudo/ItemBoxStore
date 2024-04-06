@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
+﻿using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Items;
 using ItemBoxStore.Contracts.Users;
@@ -16,14 +15,9 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Implementations
     /// </summary>
     public partial class ItemService : IItemService
     {
-        private readonly IItemRepository _itemRepository;
-        private readonly IMapper _mapper;
-
-        public ItemService(IItemRepository itemRepository, IMapper mapper)
+        public async ValueTask<ItemDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            _itemRepository = itemRepository;
-            _mapper = mapper;
+            return await _itemRepository.GetByIdAsync(id, cancellationToken);
         }
-
     }
 }

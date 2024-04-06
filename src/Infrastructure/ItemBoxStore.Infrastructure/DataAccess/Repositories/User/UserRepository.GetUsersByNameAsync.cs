@@ -1,14 +1,7 @@
 ﻿using AutoMapper.QueryableExtensions;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
-using ItemBoxStore.Domain.Users;
-using ItemBoxStore.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
 {
@@ -25,7 +18,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
             {
                 query = query.Where(user => user.EmailConfirmed == request.IsEmailConfirmed);
             }
-                
+
             return await query
                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);

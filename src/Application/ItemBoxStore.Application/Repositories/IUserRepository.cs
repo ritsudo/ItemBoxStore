@@ -1,4 +1,5 @@
 ﻿using ItemBoxStore.Application.Specifications;
+using ItemBoxStore.Contracts;
 using ItemBoxStore.Contracts.Users;
 using ItemBoxStore.Domain.Users;
 using System;

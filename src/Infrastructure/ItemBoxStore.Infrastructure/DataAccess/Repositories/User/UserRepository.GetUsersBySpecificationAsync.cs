@@ -3,13 +3,7 @@ using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Application.Specifications;
 using ItemBoxStore.Contracts.Users;
 using ItemBoxStore.Domain.Users;
-using ItemBoxStore.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
 {

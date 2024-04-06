@@ -5,6 +5,7 @@ using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Infrastructure;
 using ItemBoxStore.Infrastructure.DataAccess.Repositories;
+using ItemBoxStore.Infrastructure.DataAccess.Repositories.Items;
 using ItemBoxStore.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -16,9 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddServices();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IStorageFileService, StorageFileService>();
+builder.Services.AddTransient<IItemService, ItemService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IStorageFileRepository, StorageFileRepository>();
+builder.Services.AddScoped<IItemRepository, ItemRepository>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection")));

@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Contracts;
 using ItemBoxStore.Contracts.Users;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace ItemBoxStore.Application.Contexts.User.Services
     {
 
         /// <inheritdoc/>
-        public Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllResponseWithPagination<UserDto>> GetUsersAsync(GetAllUsersRequest request, CancellationToken cancellationToken)
         {
-            return _userRepository.GetUsersAsync(request, cancellationToken);
+            return await _userRepository.GetUsersAsync(request, cancellationToken);
         }
     }
 }

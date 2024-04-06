@@ -1,68 +1,55 @@
-﻿using ItemBoxStore.Contracts.Items;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ItemBoxStore.Contracts;
+using ItemBoxStore.Contracts.Items;
+using static ItemBoxStore.Contracts.Items.CreateItem;
 
 namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
 {
     public interface IItemService
     {
         /// <summary>
-        /// Добавить объявление
+        /// Регистрация объявления
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> CreateAsync(CreateItem.CreateItemRequest request, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(CreateItemRequest model, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Получить объявление по ID
+        /// Обновление объявления
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<GetItem.GetItemResponse> GetById(GetItem.GetItemRequest request, CancellationToken cancellationToken);
+        Task UpdateAsync(ItemDto model, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Обновить объявление
+        /// Удаление объявления
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> UpdateAsync(UpdateItem.UpdateItemRequest request, CancellationToken cancellationToken);
+        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Удалить объявление
+        /// Получить объявления по id
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task Delete(DeleteItem.DeleteItemRequest request, CancellationToken cancellationToken);
+        /// <returns>Пользователь</returns>
+        ValueTask<ItemDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Получить получить все объявления
+        /// Получить все объявления
         /// </summary>
-        /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task<GetPaged.GetPagedResponse> GetAll(GetPaged.GetPagedRequest request, CancellationToken cancellationToken);
+        /// <returns>Список абсолютно всех пользователей</returns>
+        public Task<GetAllResponseWithPagination<ItemDto>> GetItemsAsync(GetAllItemsRequest request, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Получить страницу с объявлениями (offset, count)
+        /// Получить все объявления по имени
         /// </summary>
-        /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task<GetPaged.GetPagedResponse> GetPaged(GetPaged.GetPagedRequest request, CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Добавить картинку в объявление
-        /// </summary>
-        /// <param name="request"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task AddImage(AddImage.AddImageRequest request, CancellationToken cancellationToken);
+        /// <returns>Коллекция моделей пользователей</returns>
+        public Task<IEnumerable<ItemDto>> GetItemsByNameAsync(GetItemsByNameRequest request, CancellationToken cancellationToken);
     }
 }
