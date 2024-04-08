@@ -8,15 +8,15 @@ namespace ItemBoxStore.API.Controllers.Users
     public partial class UserController : ControllerBase
     {
         /// <summary>
-        /// Создать новую запись о пользователе
+        /// Регистрация пользователя
         /// </summary>
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [HttpPost]
+        [HttpPost("register")]
         [ProducesResponseType(typeof(UserDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> CreateUser(CreateUserRequest model, CancellationToken cancellationToken)
+        public async Task<IActionResult> Register(RegisterUserRequest model, CancellationToken cancellationToken)
         {
             var dto = new UserDto {
                 Email = model.Email,
@@ -26,7 +26,7 @@ namespace ItemBoxStore.API.Controllers.Users
             };
 
             var result = await _userService.AddAsync(model, cancellationToken);
-            return CreatedAtAction(nameof(CreateUser), new { result });
+            return CreatedAtAction(nameof(Register), new { result });
         }
     }
 }

@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace ItemBoxStore.Contracts.Items
 {
-    public class CreateItem
-    {
         /// <summary>
         /// Запрос для создания нового объявления
         /// </summary>
@@ -42,5 +40,4 @@ namespace ItemBoxStore.Contracts.Items
             [Range(1, 100000000)]
             public decimal Price { get; set; }
         }
-    }
 }

@@ -1,7 +1,7 @@
 ﻿using ItemBoxStore.Contracts.Items;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using static ItemBoxStore.Contracts.Items.CreateItem;
+using static ItemBoxStore.Contracts.Items.CreateItemRequest;
 
 namespace ItemBoxStore.API.Controllers.Items
 {
@@ -16,7 +16,7 @@ namespace ItemBoxStore.API.Controllers.Items
         [HttpPost]
         [ProducesResponseType(typeof(ItemDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
-        public async Task<IActionResult> CreateItem(CreateItemRequest model, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateItem(Contracts.Items.CreateItemRequest model, CancellationToken cancellationToken)
         {
             var dto = new ItemDto
             {

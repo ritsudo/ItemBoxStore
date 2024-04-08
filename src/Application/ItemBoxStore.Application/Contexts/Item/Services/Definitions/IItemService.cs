@@ -1,6 +1,6 @@
 ﻿using ItemBoxStore.Contracts;
 using ItemBoxStore.Contracts.Items;
-using static ItemBoxStore.Contracts.Items.CreateItem;
+using static ItemBoxStore.Contracts.Items.CreateItemRequest;
 
 namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
 {
@@ -12,7 +12,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> AddAsync(CreateItemRequest model, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(Contracts.Items.CreateItemRequest model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновление объявления

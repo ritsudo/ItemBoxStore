@@ -6,7 +6,7 @@ namespace ItemBoxStore.API.Controllers.Items
     public partial class ItemController : ControllerBase
     {
         /// <summary>
-        /// Возвращает список объявлений по имени
+        /// Возвращает список объявлений по названию
         /// </summary>
         /// <param name="request">Запрос</param>
         /// <param name="cancellationToken">Токен отмены операции</param>

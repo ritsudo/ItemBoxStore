@@ -7,7 +7,7 @@ namespace ItemBoxStore.API.Controllers.Users
     public partial class UserController : ControllerBase
     {
         /// <summary>
-        /// Обновить пользователя
+        /// Обновить данные пользователя по Id
         /// </summary>
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>

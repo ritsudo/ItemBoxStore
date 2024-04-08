@@ -8,6 +8,8 @@ namespace ItemBoxStore.API.Controllers.Users
 {
     public partial class UserController : ControllerBase
     {
+        /*
+        
         /// <summary>
         /// Возвращает список пользователей
         /// </summary>
@@ -22,5 +24,7 @@ namespace ItemBoxStore.API.Controllers.Users
             var result = await _userService.GetUsersAsync(request, cancellationToken);
             return Ok(result);
         }
+
+        */
     }
 }

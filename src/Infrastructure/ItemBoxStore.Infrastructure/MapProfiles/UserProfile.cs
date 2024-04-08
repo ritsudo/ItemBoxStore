@@ -15,7 +15,7 @@ namespace ItemBoxStore.Infrastructure.MapProfiles
         {
             CreateMap<User, UserDto>();
 
-            CreateMap<CreateUserRequest, User>()
+            CreateMap<RegisterUserRequest, User>()
                 .ForMember(s => s.Id, map => map.MapFrom(s => Guid.NewGuid()))
                 .ForMember(s => s.CreatedAt, map => map.MapFrom(s => DateTime.UtcNow))
                 .ForMember(s => s.UpdatedAt, map => map.MapFrom(s => DateTime.UtcNow))

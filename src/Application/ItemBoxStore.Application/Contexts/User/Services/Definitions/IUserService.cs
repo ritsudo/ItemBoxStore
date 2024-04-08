@@ -20,7 +20,7 @@ namespace ItemBoxStore.Application.Contexts.User.Services.Definitions
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> AddAsync(CreateUserRequest model, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(RegisterUserRequest model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновление пользователя

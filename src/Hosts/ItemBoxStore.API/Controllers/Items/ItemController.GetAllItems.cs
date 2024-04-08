@@ -8,7 +8,7 @@ namespace ItemBoxStore.API.Controllers.Items
     public partial class ItemController : ControllerBase
     {
         /// <summary>
-        /// Возвращает список объявлений
+        /// Возвращает список всех объявлений с пагинацией
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>

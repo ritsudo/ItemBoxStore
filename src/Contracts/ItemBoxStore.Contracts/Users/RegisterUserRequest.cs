@@ -10,7 +10,7 @@ namespace ItemBoxStore.Contracts.Users
     /// <summary>
     /// Модель создания пользователя
     /// </summary>
-    public class CreateUserRequest
+    public class RegisterUserRequest
     {
         /// <summary>
         /// Логин пользователя
@@ -28,7 +28,7 @@ namespace ItemBoxStore.Contracts.Users
         /// <summary>
         /// Имя пользователя
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите имя")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите имя пользователя")]
         [StringLength(30)]
         public string Name { get; set; }
         /// <summary>
@@ -37,5 +37,11 @@ namespace ItemBoxStore.Contracts.Users
         [Required(ErrorMessage = "Введите телефонный номер")]
         [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Введите корректный телефонный номер")]
         public string Phone { get; set; }
+        /// <summary>
+        /// Пароль пользователя
+        /// </summary>
+        [Required(ErrorMessage = "Введите свой пароль")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

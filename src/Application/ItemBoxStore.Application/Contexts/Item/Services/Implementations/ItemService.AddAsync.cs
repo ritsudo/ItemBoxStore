@@ -15,7 +15,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Implementations
     /// </summary>
     public partial class ItemService : IItemService
     {
-        public async Task<Guid> AddAsync(CreateItem.CreateItemRequest model, CancellationToken cancellationToken)
+        public async Task<Guid> AddAsync(CreateItemRequest model, CancellationToken cancellationToken)
         {
             var entity = new Domain.Items.Item { 
                 Id = new Guid(),

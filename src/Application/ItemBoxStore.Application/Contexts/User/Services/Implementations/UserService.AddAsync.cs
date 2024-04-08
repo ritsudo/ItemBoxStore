@@ -16,7 +16,7 @@ namespace ItemBoxStore.Application.Contexts.User.Services
     public partial class UserService : IUserService
     {
         /// <inheritdoc/>
-        public async Task<Guid> AddAsync(CreateUserRequest model, CancellationToken cancellationToken)
+        public async Task<Guid> AddAsync(RegisterUserRequest model, CancellationToken cancellationToken)
         {
             var entity = _mapper.Map<ItemBoxStore.Domain.Users.User>(model);
 
