@@ -15,13 +15,13 @@ namespace ItemBoxStore.Contracts.Users
         /// <summary>
         /// Логин пользователя
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите свой логин")]
-        [StringLength(30)]
-        public string Login { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите id пользователя")]
+        [StringLength(50)]
+        public string UserId { get; set; }
         /// <summary>
         /// Пароль пользователя
         /// </summary>
-        [Required(ErrorMessage = "Введите свой пароль")]
+        [Required(ErrorMessage = "Введите пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

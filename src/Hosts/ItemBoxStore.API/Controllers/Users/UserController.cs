@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Contracts.Users;
+using ItemBoxStore.Infrastructure.PasswordHasher;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItemBoxStore.API.Controllers.Users
@@ -9,16 +10,15 @@ namespace ItemBoxStore.API.Controllers.Users
     /// </summary>
     [ApiController]
     [Route(template: "[controller]")]
-    public partial class UserController : ControllerBase
+    public partial class UserController(
+        IUserService userService,
+        ILogger<UserController> logger,
+        IPasswordHasher passwordHasher) : ControllerBase
     {
-        private readonly IUserService _userService;
+        private readonly IUserService _userService = userService;
 
-        private readonly ILogger<UserController> _logger;
+        private readonly ILogger<UserController> _logger = logger;
 
-        public UserController(IUserService userService, ILogger<UserController> logger)
-        {
-            _userService = userService;
-            _logger = logger;
-        }
+        private readonly IPasswordHasher _passwordHasher = passwordHasher;
     }
 }

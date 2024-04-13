@@ -14,9 +14,11 @@ namespace ItemBoxStore.Infrastructure.MapProfiles
         public UserProfile()
         {
             CreateMap<User, UserDto>();
+//                .ForMember(s => s.PasswordHash, opt => opt.Ignore());
 
             CreateMap<RegisterUserRequest, User>()
                 .ForMember(s => s.Id, map => map.MapFrom(s => Guid.NewGuid()))
+                .ForMember(s => s.PasswordHash, map => map.MapFrom(s => s.Password))
                 .ForMember(s => s.CreatedAt, map => map.MapFrom(s => DateTime.UtcNow))
                 .ForMember(s => s.UpdatedAt, map => map.MapFrom(s => DateTime.UtcNow))
                 .ForMember(s => s.EmailConfirmed, map => map.MapFrom(s => false));

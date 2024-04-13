@@ -32,5 +32,10 @@ namespace ItemBoxStore.Domain.Users
         /// Телефон
         /// </summary>
         public string Phone { get; set; }
+
+        /// <summary>
+        /// Хэш пароля
+        /// </summary>
+        public string PasswordHash { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Contracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -13,19 +14,23 @@ namespace ItemBoxStore.API.Controllers.Users
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpPost("register")]
         [ProducesResponseType(typeof(UserDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Register(RegisterUserRequest model, CancellationToken cancellationToken)
         {
-            var dto = new UserDto {
+            var passwordHash = _passwordHasher.Hash(model.Password);
+
+            var dto = new RegisterUserRequest {
                 Email = model.Email,
                 Login = model.Login,
                 Name = model.Name,
-                Phone = model.Phone
+                Phone = model.Phone,
+                Password = passwordHash
             };
 
-            var result = await _userService.AddAsync(model, cancellationToken);
+            var result = await _userService.AddAsync(dto, cancellationToken);
             return CreatedAtAction(nameof(Register), new { result });
         }
     }

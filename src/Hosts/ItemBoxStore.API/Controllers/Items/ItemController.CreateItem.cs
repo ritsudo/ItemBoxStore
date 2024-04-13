@@ -1,4 +1,5 @@
 ﻿using ItemBoxStore.Contracts.Items;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using static ItemBoxStore.Contracts.Items.CreateItemRequest;
@@ -13,6 +14,7 @@ namespace ItemBoxStore.API.Controllers.Items
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ProducesResponseType(typeof(ItemDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
