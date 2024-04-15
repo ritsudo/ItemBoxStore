@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.API.Controllers.Users;
 using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
+using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItemBoxStore.API.Controllers.Items
@@ -9,16 +10,13 @@ namespace ItemBoxStore.API.Controllers.Items
     /// </summary>
     [ApiController]
     [Route(template: "[controller]")]
-    public partial class ItemController : ControllerBase
+    public partial class ItemController(
+        IItemService itemService,
+        IUserService userService,
+        ILogger<ItemController> logger) : ControllerBase
     {
-        private readonly IItemService _itemService;
-        private readonly ILogger<ItemController> _logger;
-
-        public ItemController(IItemService itemService, ILogger<ItemController> logger)
-        {
-            _itemService = itemService;
-            _logger = logger;
-        }
-
+        private readonly IUserService _userService = userService;
+        private readonly IItemService _itemService = itemService;
+        private readonly ILogger<ItemController> _logger = logger;
     }
 }

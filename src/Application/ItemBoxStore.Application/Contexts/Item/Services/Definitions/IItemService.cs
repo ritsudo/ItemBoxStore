@@ -12,7 +12,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> AddAsync(Contracts.Items.CreateItemRequest model, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(ItemDto model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновление объявления
@@ -36,7 +36,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns>Пользователь</returns>
-        ValueTask<ItemDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        ValueTask<ItemDtoDetailed> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить все объявления

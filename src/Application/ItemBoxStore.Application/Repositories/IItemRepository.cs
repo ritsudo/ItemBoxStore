@@ -45,7 +45,7 @@ namespace ItemBoxStore.Application.Repositories
         /// <param name="id"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<ItemDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        public Task<ItemDtoDetailed> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
         /// Создать предмет

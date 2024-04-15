@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Contracts;
 using ItemBoxStore.Contracts.Items;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -13,6 +14,7 @@ namespace ItemBoxStore.API.Controllers.Items
         /// <param name="request"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         [Route(template: "all")]
         [ProducesResponseType(typeof(GetAllResponseWithPagination<ItemDto>), (int)HttpStatusCode.OK)]

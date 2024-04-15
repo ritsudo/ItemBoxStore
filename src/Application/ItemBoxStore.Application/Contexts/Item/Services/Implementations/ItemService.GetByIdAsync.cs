@@ -15,7 +15,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Implementations
     /// </summary>
     public partial class ItemService : IItemService
     {
-        public async ValueTask<ItemDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async ValueTask<ItemDtoDetailed> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _itemRepository.GetByIdAsync(id, cancellationToken);
         }

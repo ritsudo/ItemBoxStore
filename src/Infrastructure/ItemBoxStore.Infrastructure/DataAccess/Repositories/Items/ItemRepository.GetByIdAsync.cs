@@ -9,10 +9,10 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
     public partial class ItemRepository : IItemRepository
     {
 
-        public async Task<ItemDto> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<ItemDtoDetailed> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             return await _repository.GetAll().Where(s => s.Id == id)
-            .ProjectTo<ItemDto>(_mapper.ConfigurationProvider)
+            .ProjectTo<ItemDtoDetailed>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
         }
 
