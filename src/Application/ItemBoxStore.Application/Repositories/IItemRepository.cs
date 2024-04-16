@@ -68,5 +68,13 @@ namespace ItemBoxStore.Application.Repositories
         /// <param name="itemDto"></param>
         /// <returns></returns>
         public Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Заменить картинку
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task ModifyImage(ModifyImageRequest model, CancellationToken cancellationToken);
     }
 }

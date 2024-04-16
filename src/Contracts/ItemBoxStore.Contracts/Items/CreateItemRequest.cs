@@ -34,9 +34,16 @@ namespace ItemBoxStore.Contracts.Items
             public string Description { get; set; }
 
             /// <summary>
-            /// Стоимость товара
+            /// Локация объявления
             /// </summary>
-            [Required]
+            [Required(AllowEmptyStrings = false, ErrorMessage = "Введите локацию (до 50 символов)")]
+            [StringLength(50)]
+            public string Location { get; set; }
+
+        /// <summary>
+        /// Стоимость товара
+        /// </summary>
+        [Required]
             [Range(1, 100000000)]
             public decimal Price { get; set; }
         }

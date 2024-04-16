@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 
 namespace ItemBoxStore.Contracts.Items
 {
+    /// <summary>
+    /// Запрос для работы с картинками объявления
+    /// </summary>
     public class ModifyImageRequest
     {
-        /// <summary>
-        /// Запрос для работы с картинками объявления
-        /// </summary>
-        public class DeleteItemRequest
-        {
             /// <summary>
             /// Идентификатор изменяемого объявления
             /// </summary>
-            public Guid Id { get; set; }
+            public Guid ItemId { get; set; }
 
             /// <summary>
             /// Идентификатор изменяемой картинки
             /// </summary>
-            public Guid Image_Id { get; set; }
-        }
+            public Guid ImageId { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using ItemBoxStore.Contracts.Items;
+using ItemBoxStore.Domain.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
@@ -25,6 +26,7 @@ namespace ItemBoxStore.API.Controllers.Items
 
             if (token == null)
             {
+                _logger.LogInformation("Ошибка создания объявления: токен отсутствует");
                 return Unauthorized();
             }
 
@@ -37,14 +39,16 @@ namespace ItemBoxStore.API.Controllers.Items
 
                 if (userId == null)
                 {
+                    _logger.LogInformation("Ошибка создания объявления: не удалось найти пользователя");
                     return Unauthorized();
                 }
 
-                var dto = new ItemDto
+                var dto = new ItemDtoDetailed
                 {
                     Name = model.Name,
                     SubCategoryId = model.SubCategoryId,
                     Description = model.Description,
+                    Location = model.Location,
                     Price = model.Price,
                     AuthorId = new Guid(userId)
                 };
@@ -55,7 +59,8 @@ namespace ItemBoxStore.API.Controllers.Items
             }
             catch (Exception ex)
             {
-                return Unauthorized();
+                _logger.LogError("Ошибка сервера при работе с объявлением");
+                return StatusCode(500);
             }
         }
     }

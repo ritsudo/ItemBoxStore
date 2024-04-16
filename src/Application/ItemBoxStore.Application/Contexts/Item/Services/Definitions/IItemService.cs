@@ -12,7 +12,7 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<Guid> AddAsync(ItemDto model, CancellationToken cancellationToken);
+        Task<Guid> AddAsync(ItemDtoDetailed model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Обновление объявления
@@ -29,6 +29,14 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Замена изображения объявлению
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task ModifyImage(ModifyImageRequest model, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить объявления по id
@@ -51,5 +59,6 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// <param name="cancellationToken"></param>
         /// <returns>Коллекция моделей пользователей</returns>
         public Task<IEnumerable<ItemDto>> GetItemsByNameAsync(GetItemsByNameRequest request, CancellationToken cancellationToken);
+
     }
 }

@@ -24,9 +24,9 @@ namespace ItemBoxStore.Contracts.Items
         public int SubCategoryId { get; set; }
 
         /// <summary>
-        /// Описание объявления
+        /// Локация объявления
         /// </summary>
-        public string Description { get; set; }
+        public string Location { get; set; }
 
         /// <summary>
         /// Стоимость товара
@@ -34,9 +34,9 @@ namespace ItemBoxStore.Contracts.Items
         public decimal Price { get; set; }
 
         /// <summary>
-        /// ID автора объявления
+        /// ID главного изображения (обложки) объявления
         /// </summary>
-        public Guid AuthorId { get; set; }
+        public Guid MainImageId { get; set; }
 
         /// <summary>
         /// Состояние объявления

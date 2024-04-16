@@ -1,21 +1,22 @@
 ﻿using ItemBoxStore.Contracts.Items;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
+using static ItemBoxStore.Contracts.Items.CreateItemRequest;
 
 namespace ItemBoxStore.API.Controllers.Items
 {
     public partial class ItemController : ControllerBase
     {
         /// <summary>
-        /// Удалить объявление
+        /// Заменить картинку объявления
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [Authorize]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteItemAsync(Guid id, CancellationToken cancellationToken)
+        [HttpPost("image-change")]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<IActionResult> AddImageToItem(ModifyImageRequest model, CancellationToken cancellationToken)
         {
             var token = Request.Headers["Authorization"].FirstOrDefault()?.Replace("Bearer ", "");
 
@@ -38,24 +39,30 @@ namespace ItemBoxStore.API.Controllers.Items
 
                 var userGuid = new Guid(userId);
 
-                var item = await _itemService.GetByIdAsync(id, cancellationToken);
+                var item = await _itemService.GetByIdAsync(model.ItemId, cancellationToken);
+
+                if (item == null)
+                {
+                    _logger.LogInformation("Нет такого объявления");
+                    return NotFound();
+                }
 
                 if (item.AuthorId != userGuid)
                 {
-                    _logger.LogInformation("Попытка удалить не своё объявление пользователем {UserId}", userId);
+                    _logger.LogInformation("Попытка изменить не своё объявление пользователем {UserId}", userId);
                     return Forbid();
                 }
 
-                await _itemService.DeleteAsync(id, cancellationToken);
-                return Ok();
+                // TODO проверка существует ли файл
 
+                await _itemService.ModifyImage(model, cancellationToken);
+                return Ok();
             }
             catch (Exception ex)
             {
-                _logger.LogError("Ошибка сервера при удалении объявления");
+                _logger.LogError("Ошибка сервера при изменении объявления");
                 return StatusCode(500);
             }
-
         }
     }
 }

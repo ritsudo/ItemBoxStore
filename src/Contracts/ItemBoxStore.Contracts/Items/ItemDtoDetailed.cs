@@ -11,6 +11,15 @@ namespace ItemBoxStore.Contracts.Items
     /// </summary>
     public class ItemDtoDetailed : ItemDto
     {
+        /// <summary>
+        /// Описание объявления
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// ID автора объявления
+        /// </summary>
+        public Guid AuthorId { get; set; }
 
         /// <summary>
         /// Имя автора объявления

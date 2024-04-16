@@ -15,12 +15,13 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Implementations
     /// </summary>
     public partial class ItemService : IItemService
     {
-        public async Task<Guid> AddAsync(ItemDto model, CancellationToken cancellationToken)
+        public async Task<Guid> AddAsync(ItemDtoDetailed model, CancellationToken cancellationToken)
         {
             var entity = new Domain.Items.Item { 
                 Id = new Guid(),
                 Name = model.Name,
                 Description = model.Description,
+                Location = model.Location,
                 Price = model.Price,
                 AuthorId = model.AuthorId,
                 SubCategoryId = model.SubCategoryId,

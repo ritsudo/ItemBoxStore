@@ -29,6 +29,11 @@ namespace ItemBoxStore.Domain.Items
         public string Description { get; set; }
 
         /// <summary>
+        /// Местонахождение объявления (город)
+        /// </summary>
+        public string Location { get; set; }
+
+        /// <summary>
         /// Стоимость товара
         /// </summary>
         public decimal Price { get; set; }
@@ -48,8 +53,13 @@ namespace ItemBoxStore.Domain.Items
         }
 
         /// <summary>
-        /// Коллекция изображений
+        /// ID главного изображения (обложки) объявления
         /// </summary>
-        public virtual ICollection<StorageFile>? Images { get; set; }
+        public Guid MainImageId { get; set; }
+
+        /// <summary>
+        /// Коллекция изображений объявления
+        /// </summary>
+        public ICollection<StorageFile>? Images { get; set; }
     }
 }
