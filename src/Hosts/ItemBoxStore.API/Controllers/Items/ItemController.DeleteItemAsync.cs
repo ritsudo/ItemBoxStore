@@ -42,6 +42,7 @@ namespace ItemBoxStore.API.Controllers.Items
 
                 if (item.AuthorId != userGuid)
                 {
+                    _logger.LogInformation("Попытка удалить не своё объявление пользователем {UserId}", userId);
                     return Forbid();
                 }
 

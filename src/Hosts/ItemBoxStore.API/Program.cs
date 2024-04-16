@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -99,9 +100,14 @@ builder.Services.AddAuthentication(options =>
     }
     );
     
-
 builder.Services.AddAuthorization();
 
+builder.Services.AddSerilog((services, config) =>
+{
+    config
+        .ReadFrom.Configuration(builder.Configuration)
+        .WriteTo.Console();
+});
 
 var app = builder.Build();
 
