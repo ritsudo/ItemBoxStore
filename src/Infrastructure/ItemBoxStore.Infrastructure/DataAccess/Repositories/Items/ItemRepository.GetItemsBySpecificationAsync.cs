@@ -13,7 +13,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
         public async Task<IEnumerable<ItemDto>> GetItemsBySpecificationAsync(Specification<Item> request, CancellationToken cancellationToken)
         {
             return await _repository.GetAll()
-                .Where(request.ToExpession())
+                .Where(request.ToExpression())
                 .ProjectTo<ItemDto>(_mapper.ConfigurationProvider)
                 .ToArrayAsync(cancellationToken);
         }

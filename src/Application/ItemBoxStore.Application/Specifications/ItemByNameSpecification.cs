@@ -17,7 +17,7 @@ namespace ItemBoxStore.Application.Specifications
             _name = name;
         }
 
-        public override Expression<Func<Item, bool>> ToExpession()
+        public override Expression<Func<Item, bool>> ToExpression()
         {
             return item => item.Name == _name;
         }

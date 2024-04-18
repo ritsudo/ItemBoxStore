@@ -14,7 +14,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         public async Task<IEnumerable<UserDto>> GetUsersBySpecificationAsync(Specification<User> request, CancellationToken cancellationToken)
         {
             return await _repository.GetAll()
-                .Where(request.ToExpession())
+                .Where(request.ToExpression())
                 .ProjectTo<UserDto>(_mapper.ConfigurationProvider)
                 .ToArrayAsync(cancellationToken);
         }

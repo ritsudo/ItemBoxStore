@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ItemBoxStore.DbMigrator", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{75A74D53-7F09-472F-B776-8436EF9C0277}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Academy.ItemBoxStore.UnitTests", "Tests\Academy.ItemBoxStore.UnitTests\Academy.ItemBoxStore.UnitTests.csproj", "{17299542-1946-43BC-9CBF-282DF85D5252}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,12 +51,17 @@ Global
 		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3803A0AA-9323-466A-BD92-EEDBF85231BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17299542-1946-43BC-9CBF-282DF85D5252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17299542-1946-43BC-9CBF-282DF85D5252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17299542-1946-43BC-9CBF-282DF85D5252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17299542-1946-43BC-9CBF-282DF85D5252}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3803A0AA-9323-466A-BD92-EEDBF85231BD} = {82F6E638-E3B5-4951-A143-B7C959791718}
+		{17299542-1946-43BC-9CBF-282DF85D5252} = {75A74D53-7F09-472F-B776-8436EF9C0277}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E138B647-0ACD-43A3-81D5-BAF8410B467F}
