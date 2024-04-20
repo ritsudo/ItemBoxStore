@@ -15,36 +15,26 @@ namespace ItemBoxStore.Contracts.Items
             /// <summary>
             /// Название объявления
             /// </summary>
-            [Required(AllowEmptyStrings = false, ErrorMessage = "Введите название объявления (до 30 символов)")]
-            [StringLength(30)]
             public string Name { get; set; }
 
             /// <summary>
             /// ID подкатегории объявления
             /// </summary>
-            [Required]
-            [Range(1, 100)]
             public int SubCategoryId { get; set; }
 
             /// <summary>
             /// Описание объявления
             /// </summary>
-            [Required(AllowEmptyStrings = false, ErrorMessage = "Введите описание объявления (до 500 символов)")]
-            [StringLength(500)]
             public string Description { get; set; }
 
             /// <summary>
             /// Локация объявления
             /// </summary>
-            [Required(AllowEmptyStrings = false, ErrorMessage = "Введите локацию (до 50 символов)")]
-            [StringLength(50)]
             public string Location { get; set; }
 
-        /// <summary>
-        /// Стоимость товара
-        /// </summary>
-        [Required]
-            [Range(1, 100000000)]
+            /// <summary>
+            /// Стоимость товара
+            /// </summary>
             public decimal Price { get; set; }
         }
 }

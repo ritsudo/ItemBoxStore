@@ -1,23 +1,23 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
 using ItemBoxStore.Application.Contexts.Item.Services.Implementations;
 using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Application.Contexts.User.Services.Definitions;
 using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Application.Validators;
 using ItemBoxStore.Infrastructure;
 using ItemBoxStore.Infrastructure.DataAccess.Repositories;
 using ItemBoxStore.Infrastructure.DataAccess.Repositories.Items;
-using ItemBoxStore.Infrastructure.Identity;
 using ItemBoxStore.Infrastructure.PasswordHasher;
 using ItemBoxStore.Infrastructure.Repository;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Reflection;
 using System.Text;
-using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,7 +50,8 @@ builder.Services.AddSwaggerGen(gen =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilePath);
     gen.IncludeXmlComments(xmlPath);
 
-    gen.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme {
+    gen.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
         Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
                         Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\n
                         Example: 'Bearer 12345abcdef'",
@@ -99,7 +100,7 @@ builder.Services.AddAuthentication(options =>
         };
     }
     );
-    
+
 builder.Services.AddAuthorization();
 
 builder.Services.AddSerilog((services, config) =>
@@ -108,6 +109,9 @@ builder.Services.AddSerilog((services, config) =>
         .ReadFrom.Configuration(builder.Configuration)
         .WriteTo.Console();
 });
+
+builder.Services.AddFluentValidationAutoValidation(o => o.DisableDataAnnotationsValidation = true);
+builder.Services.AddValidatorsFromAssembly(typeof(CreateItemValidator).Assembly);
 
 var app = builder.Build();
 
