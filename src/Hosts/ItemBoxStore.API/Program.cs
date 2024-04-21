@@ -111,7 +111,10 @@ builder.Services.AddSerilog((services, config) =>
 });
 
 builder.Services.AddFluentValidationAutoValidation(o => o.DisableDataAnnotationsValidation = true);
-builder.Services.AddValidatorsFromAssembly(typeof(CreateItemValidator).Assembly);
+builder.Services.AddValidatorsFromAssemblies([
+        typeof(CreateItemValidator).Assembly,
+        typeof(RegisterUserValidator).Assembly
+    ]);
 
 var app = builder.Build();
 

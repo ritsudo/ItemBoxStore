@@ -11,14 +11,27 @@ namespace ItemBoxStore.Application.Validators
 {
     public class CreateItemValidator : AbstractValidator<CreateItemRequest>
     {
-        public CreateItemValidator() { 
-            RuleFor(x => x.Name).Length(1,30).Must(s => s.All(char.IsLetter));
-            RuleFor(x => x.SubCategoryId).NotNull().GreaterThan(0).LessThan(90);
+        public CreateItemValidator() 
+        { 
+            RuleFor(x => x.Name)
+                .Length(1,30)
+                .Must(s => s.All(char.IsLetter));
 
-            RuleFor(x => x.Description).Length(1, 500).Must(s => s.All(char.IsLetter));
-            RuleFor(x => x.Location).Length(1, 50).Must(s => s.All(char.IsLetter));
+            RuleFor(x => x.SubCategoryId)
+                .NotNull()
+                .GreaterThan(0)
+                .LessThan(90);
 
-            RuleFor(x => x.Price).NotNull().GreaterThan(0).LessThan(100000000);
+            RuleFor(x => x.Description)
+                .Length(1, 500);
+
+            RuleFor(x => x.Location)
+                .Length(1, 50);
+
+            RuleFor(x => x.Price)
+                .NotNull()
+                .GreaterThan(0)
+                .LessThan(100000000);
         }
     }
 }
