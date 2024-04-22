@@ -13,6 +13,9 @@ namespace Academy.ItemBoxStore.UnitTests.Validators
     
     public class RegisterUserValidatorTests
     {
+        /// <summary>
+        /// Проверка валидации RegisterUserRequest
+        /// </summary>
         [Fact]
         public void ShouldError_PasswordIsLessThan6()
         {
@@ -37,6 +40,9 @@ namespace Academy.ItemBoxStore.UnitTests.Validators
                 .Only();
         }
 
+        /// <summary>
+        /// Проверка валидации RegisterUserRequest
+        /// </summary>
         [Fact]
         public void ShouldError_LoginIsUndefined()
         {

@@ -9,7 +9,7 @@ using ItemBoxStore.Domain.Items;
 using Moq;
 using Shouldly;
 
-namespace Academy.ItemBoxStore.UnitTests
+namespace Academy.ItemBoxStore.UnitTests.Services
 {
     public class ItemServiceTests
     {
@@ -25,6 +25,10 @@ namespace Academy.ItemBoxStore.UnitTests
             _itemService = new ItemService(_itemRepositoryMock.Object, mapper.Object);
         }
 
+        /// <summary>
+        /// Сервис получения предметов по имени должен возвращать результат
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task GetItemsByNameAsync_Should_ReturnCorrectResult()
         {
@@ -54,7 +58,9 @@ namespace Academy.ItemBoxStore.UnitTests
                 Times.Once);
         }
 
-
+        /// <summary>
+        /// Создание предмета должно возвращать результат
+        /// </summary>
         [Fact]
         public void ItemService_AddAsync_Should_ReturnResult()
         {

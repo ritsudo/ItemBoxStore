@@ -13,6 +13,9 @@ namespace Academy.ItemBoxStore.UnitTests.Validators
 {
     public class CreateItemValidatorTests
     {
+        /// <summary>
+        /// Проверка валидации CreateItemRequest
+        /// </summary>
         [Fact]
         public void ShouldError_PriceEquals0()
         {
@@ -36,6 +39,9 @@ namespace Academy.ItemBoxStore.UnitTests.Validators
                 .Only();
         }
 
+        /// <summary>
+        /// Проверка валидации CreateItemRequest
+        /// </summary>
         [Fact]
         public void ShouldError_NameIsNull()
         {

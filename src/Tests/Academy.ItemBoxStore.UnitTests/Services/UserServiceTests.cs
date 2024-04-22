@@ -10,7 +10,7 @@ using ItemBoxStore.Application.Specifications;
 using ItemBoxStore.Domain.Users;
 using Shouldly;
 
-namespace Academy.ItemBoxStore.UnitTests
+namespace Academy.ItemBoxStore.UnitTests.Services
 {
     public class UserServiceTests
     {
@@ -25,7 +25,11 @@ namespace Academy.ItemBoxStore.UnitTests
             _userRepositoryMock = new Mock<IUserRepository>();
             _userService = new UserService(_userRepositoryMock.Object, mapper.Object);
         }
-        
+
+        /// <summary>
+        /// Получение пользователя должно возвращать результат
+        /// </summary>
+        /// <returns></returns>
         [Fact]
         public async Task GetUsersByNameAsync_Should_ReturnCorrectResult()
         {
@@ -56,7 +60,10 @@ namespace Academy.ItemBoxStore.UnitTests
                 Times.Once);
         }
 
-        
+
+        /// <summary>
+        /// Добавление пользователя должно возвращать результат
+        /// </summary>
         [Fact]
         public void UserService_AddAsync_Should_ReturnResult()
         {
@@ -69,7 +76,7 @@ namespace Academy.ItemBoxStore.UnitTests
 
             // Assert
             Assert.IsType<Task<Guid>>(result);
-            
+
         }
 
         private bool CheckByNameSpecification(Specification<User> specification) =>

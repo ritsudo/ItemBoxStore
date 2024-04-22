@@ -14,7 +14,6 @@ namespace ItemBoxStore.Infrastructure.MapProfiles
         public UserProfile()
         {
             CreateMap<User, UserDto>();
-//                .ForMember(s => s.PasswordHash, opt => opt.Ignore());
 
             CreateMap<RegisterUserRequest, User>()
                 .ForMember(s => s.Id, map => map.MapFrom(s => Guid.NewGuid()))

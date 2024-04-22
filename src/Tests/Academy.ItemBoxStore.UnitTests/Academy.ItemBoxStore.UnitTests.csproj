@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\ItemBoxStore.Application\ItemBoxStore.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\ItemBoxStore.Infrastructure\ItemBoxStore.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
