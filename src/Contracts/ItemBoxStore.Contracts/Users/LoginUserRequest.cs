@@ -15,9 +15,9 @@ namespace ItemBoxStore.Contracts.Users
         /// <summary>
         /// Логин пользователя
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите id пользователя")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите логин пользователя")]
         [StringLength(50)]
-        public string UserId { get; set; }
+        public string Login { get; set; }
         /// <summary>
         /// Пароль пользователя
         /// </summary>

@@ -35,10 +35,13 @@ namespace ItemBoxStore.API.Controllers.Tokens
         [HttpPost]
         public async Task<IActionResult> GetUserToken(LoginUserRequest model, CancellationToken cancellationToken)
         {
-            var userGuid = new Guid(model.UserId);
 
-            //TODO get user and hash by login from repo
-            var user = await _userService.GetByIdAsync(userGuid, cancellationToken);
+            var userRequest = new GetUsersByLoginRequest
+            {
+                Login = model.Login
+            };
+
+            var user = await _userService.GetByLoginAsync(userRequest, cancellationToken);
 
             if (user == null)
             {
@@ -58,7 +61,7 @@ namespace ItemBoxStore.API.Controllers.Tokens
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Name, "User"),
                 new Claim(ClaimTypes.Role, "User"),
-                new Claim("UserId", model.UserId),
+                new Claim("UserId", user.Id.ToString()),
                 new Claim("UserName", user.Login)
             };
 

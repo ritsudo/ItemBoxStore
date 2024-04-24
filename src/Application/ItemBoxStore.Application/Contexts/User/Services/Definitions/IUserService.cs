@@ -47,6 +47,14 @@ namespace ItemBoxStore.Application.Contexts.User.Services.Definitions
         ValueTask<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Получить пользователя по логину
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Пользователь</returns>
+        ValueTask<UserDto> GetByLoginAsync(GetUsersByLoginRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
         /// Получить всех пользователей
         /// </summary>
         /// <param name="cancellationToken"></param>
