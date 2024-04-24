@@ -30,6 +30,19 @@ namespace ItemBoxStore.API.Controllers.Users
                 Password = passwordHash
             };
 
+            var userRequest = new GetUsersByLoginRequest
+            {
+                Login = model.Login
+            };
+
+            var user = await _userService.GetByLoginAsync(userRequest, cancellationToken);
+
+            if (user != null)
+            {
+                //Пользователь уже существует
+                return Forbid();
+            }
+
             var result = await _userService.AddAsync(dto, cancellationToken);
             return CreatedAtAction(nameof(Register), new { result });
         }

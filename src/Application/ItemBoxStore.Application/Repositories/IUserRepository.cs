@@ -49,6 +49,14 @@ namespace ItemBoxStore.Application.Repositories
         public Task<UserDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Получить пользователя по логину
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<UserDto> GetUsersByLoginAsync(GetUsersByLoginRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
         /// Создать пользователя
         /// </summary>
         /// <param name="userDto"></param>

@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 namespace ItemBoxStore.Contracts.Users
 {
     /// <summary>
-    /// Запрос получения пользователя по имени
+    /// Запрос получения пользователя по логину
     /// </summary>
     public class GetUsersByNameRequest
     {
         /// <summary>
         /// Логин пользователя
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите имя")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Введите логин")]
         [StringLength(30)]
         public string Name { get; set; }
+
         /// <summary>
         /// Подтвержден ли e-mail
         /// </summary>
