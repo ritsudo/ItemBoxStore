@@ -20,5 +20,10 @@ namespace ItemBoxStore.Contracts.Items
         /// Количество элементов на одной странице
         /// </summary>
         public int BatchSize { get; set; } = 10;
+
+        /// <summary>
+        /// Режим сортировки
+        /// </summary>
+        public int SortMode { get; set; } = 0;
     }
 }

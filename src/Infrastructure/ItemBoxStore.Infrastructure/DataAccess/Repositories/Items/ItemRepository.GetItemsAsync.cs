@@ -2,7 +2,9 @@
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts;
 using ItemBoxStore.Contracts.Items;
+using ItemBoxStore.Domain.Items;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 {
@@ -19,8 +21,28 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
             var totalCount = await query.CountAsync(cancellationToken);
             result.TotalPages = (totalCount / request.BatchSize) + 1;
 
+            Expression<Func<Item, object>> orderByExpression;
+            switch(request.SortMode)
+            {
+                case 0:
+                    orderByExpression = item => item.Id;
+                    break;
+
+                case 1:
+                    orderByExpression = item => item.Name;
+                    break;
+
+                case 2:
+                    orderByExpression = item => item.Price;
+                    break;
+
+                default:
+                    orderByExpression = item => item.Id;
+                    break;
+            }
+
             var paginationQuery = await query
-                .OrderBy(item => item.Id)
+                .OrderBy(orderByExpression)
                 .Skip(request.BatchSize * (request.PageNumber - 1))
                 .Take(request.BatchSize)
                 .ProjectTo<ItemDto>(_mapper.ConfigurationProvider)
