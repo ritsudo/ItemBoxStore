@@ -19,7 +19,8 @@ namespace ItemBoxStore.Application.Specifications
 
         public override Expression<Func<Item, bool>> ToExpression()
         {
-            return item => item.Name == _name;
+            var lowerName = _name.ToLower();
+            return item => item.Name.ToLower().Contains(lowerName);
         }
     }
 }
