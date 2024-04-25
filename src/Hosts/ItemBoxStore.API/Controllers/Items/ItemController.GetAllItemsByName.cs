@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Contracts.Items;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ItemBoxStore.API.Controllers.Items
 {
@@ -15,6 +16,12 @@ namespace ItemBoxStore.API.Controllers.Items
         [Route(template: "by-name")]
         public async Task<IActionResult> GetAllItemsByName([FromQuery] GetItemsByNameRequest request, CancellationToken cancellationToken)
         {
+            if (request.Name == null || request.Name == "")
+            {
+                var allRequest = new GetAllItemsRequest();
+                var allResult = await _itemService.GetItemsAsync(allRequest, cancellationToken);
+                return Ok(allResult.Result);
+            }
             var result = await _itemService.GetItemsByNameAsync(request, cancellationToken);
             return Ok(result);
         }
