@@ -12,7 +12,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
     public partial class ItemRepository : IItemRepository
     {
 
-        public async Task<GetAllResponseWithPagination<ItemDto>> GetItemsAsync(GetAllItemsRequest request, CancellationToken cancellationToken)
+        public async Task<GetAllResponseWithPagination<ItemDto>> GetItemsAsync(GetAllItemsRequest request, Expression<Func<Item, object>> orderByExpression, CancellationToken cancellationToken)
         {
             var result = new GetAllResponseWithPagination<ItemDto>();
 
@@ -20,26 +20,6 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 
             var totalCount = await query.CountAsync(cancellationToken);
             result.TotalPages = (totalCount / request.BatchSize) + 1;
-
-            Expression<Func<Item, object>> orderByExpression;
-            switch(request.SortMode)
-            {
-                case 0:
-                    orderByExpression = item => item.Id;
-                    break;
-
-                case 1:
-                    orderByExpression = item => item.Name;
-                    break;
-
-                case 2:
-                    orderByExpression = item => item.Price;
-                    break;
-
-                default:
-                    orderByExpression = item => item.Id;
-                    break;
-            }
 
             var paginationQuery = await query
                 .OrderBy(orderByExpression)
