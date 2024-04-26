@@ -9,6 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.Net;
 
 namespace ItemBoxStore.API.Controllers.Tokens
 {
@@ -45,14 +46,14 @@ namespace ItemBoxStore.API.Controllers.Tokens
 
             if (user == null)
             {
-                return NotFound();
+                return StatusCode((int)HttpStatusCode.NotFound, "Пользователь с данным логином не найден");
             }
 
             var result = _passwordHasher.Verify(user.PasswordHash, model.Password);
 
             if (!result)
             {
-                return StatusCode(403);
+                return StatusCode((int)HttpStatusCode.Forbidden, "Введён неправильный логин или пароль");
             }
 
             var claims = new[]

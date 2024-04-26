@@ -40,7 +40,7 @@ namespace ItemBoxStore.API.Controllers.Users
             if (user != null)
             {
                 //Пользователь уже существует
-                return Forbid();
+                return StatusCode((int)HttpStatusCode.Forbidden, "Пользователь с данным логином уже существует");
             }
 
             var result = await _userService.AddAsync(dto, cancellationToken);
