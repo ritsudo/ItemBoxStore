@@ -12,10 +12,12 @@ namespace ItemBoxStore.API.Controllers.Items
     [Route(template: "[controller]")]
     public partial class ItemController(
         IItemService itemService,
+        IStorageFileService fileService,
         IUserService userService,
         ILogger<ItemController> logger) : ControllerBase
     {
         private readonly IUserService _userService = userService;
+        private readonly IStorageFileService _fileService = fileService;
         private readonly IItemService _itemService = itemService;
         private readonly ILogger<ItemController> _logger = logger;
     }
