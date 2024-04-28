@@ -50,15 +50,23 @@ namespace ItemBoxStore.Application.Contexts.Item.Services.Definitions
         /// Получить все объявления
         /// </summary>
         /// <param name="cancellationToken"></param>
-        /// <returns>Список абсолютно всех пользователей</returns>
+        /// <returns>Список абсолютно всех объявлений</returns>
         public Task<GetAllResponseWithPagination<ItemDto>> GetItemsAsync(GetAllItemsRequest request, CancellationToken cancellationToken);
 
         /// <summary>
         /// Получить все объявления по имени
         /// </summary>
         /// <param name="cancellationToken"></param>
-        /// <returns>Коллекция моделей пользователей</returns>
+        /// <returns>Коллекция моделей объявления</returns>
         public Task<IEnumerable<ItemDto>> GetItemsByNameAsync(GetItemsByNameRequest request, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить все объявления пользователя по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns>Коллекция моделей объявлений</returns>
+        public Task<IEnumerable<ItemDto>> GetItemsByUserIdAsync(Guid id, CancellationToken cancellationToken);
 
     }
 }

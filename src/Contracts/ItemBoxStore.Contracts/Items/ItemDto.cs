@@ -19,6 +19,11 @@ namespace ItemBoxStore.Contracts.Items
         public string Name { get; set; }
 
         /// <summary>
+        /// Дата создания
+        /// </summary>
+        public string CreatedAt { get; set; }
+
+        /// <summary>
         /// ID подкатегории объявления
         /// </summary>
         public int SubCategoryId { get; set; }
