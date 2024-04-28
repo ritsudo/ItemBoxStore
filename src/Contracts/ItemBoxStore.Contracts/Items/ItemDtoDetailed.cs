@@ -27,6 +27,16 @@ namespace ItemBoxStore.Contracts.Items
         public string AuthorName { get; set; }
 
         /// <summary>
+        /// Телефон автора объявления
+        /// </summary>
+        public string CreatedAt { get; set; }
+
+        /// <summary>
+        /// Телефон автора объявления
+        /// </summary>
+        public string AuthorPhone { get; set; }
+
+        /// <summary>
         /// ID аватара автора объявления
         /// </summary>
         public Guid AuthorAvatarId { get; set; }

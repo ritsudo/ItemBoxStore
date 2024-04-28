@@ -20,6 +20,7 @@ namespace ItemBoxStore.Infrastructure.MapProfiles
 
             CreateMap<Item, ItemDtoDetailed>()
                 .ForMember(s => s.AuthorName, opt => opt.Ignore())
+                .ForMember(s => s.AuthorPhone, opt => opt.Ignore())
                 .ForMember(s => s.AuthorAvatarId, opt => opt.Ignore());
         }
     }

@@ -31,6 +31,7 @@ namespace ItemBoxStore.API.Controllers.Items
             }
 
             result.AuthorName = user.Name;
+            result.AuthorPhone = user.Phone;
 
             return Ok(result);
         }
