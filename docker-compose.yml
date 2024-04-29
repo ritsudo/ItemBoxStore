@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: "postgres"
+    restart: always
+    environment: 
+        - POSTGRES_USER=postgres
+        - POSTGRES_DB=itemboxstore
+        - POSTGRES_PASSWORD=12345678
+    ports: 
+        - "5433:5433"
+    volumes: 
+        - postgres_data:/var/lib/postgresql/data/
+
+  api:
+    build:
+      context: .
+      dockerfile: src/Dockerfile
+    ports:
+      - 5000:8080
+    environment:
+      - ConnectionStrings__DbConnection=Server=postgres;Database=itemboxstore;Username=postgres;Password=12345678;Port=5432
+    depends_on:
+      - "postgres"
+        
+volumes: 
+  postgres_data:
