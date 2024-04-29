@@ -20,10 +20,21 @@ services:
       dockerfile: src/Dockerfile
     ports:
       - 5000:8080
+      - 5001:8081
     environment:
       - ConnectionStrings__DbConnection=Server=postgres;Database=itemboxstore;Username=postgres;Password=12345678;Port=5432
     depends_on:
       - "postgres"
+      
+  ui:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - 80:80
+    restart: on-failure
+    depends_on:
+      - "api"
         
 volumes: 
   postgres_data:
