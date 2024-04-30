@@ -3,7 +3,7 @@ using ItemBoxStore.Contracts.Users;
 
 namespace ItemBoxStore.Application.Validators
 {
-    public class RegisterUserValidator : AbstractValidator<RegisterUserRequest>
+    public class RegisterUserValidator : AbstractValidator<RegisterUserRequestWithCaptcha>
     {
         public RegisterUserValidator()
         {

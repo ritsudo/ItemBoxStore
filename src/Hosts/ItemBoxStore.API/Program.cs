@@ -1,5 +1,7 @@
+using DNTCaptcha.Core;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using ItemBoxStore.API.Controllers.Swagger;
 using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
 using ItemBoxStore.Application.Contexts.Item.Services.Implementations;
 using ItemBoxStore.Application.Contexts.User.Services;
@@ -40,12 +42,17 @@ builder.Services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbCon
 
 builder.Services.AddTransient<IItemService, ItemService>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(c =>
+        c.Conventions.Add(new ApiExplorerOnlyConvention())
+    );
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(gen =>
 {
     gen.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API - магазин", Version = "V1" });
+
+
     var xmlFilePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilePath);
     gen.IncludeXmlComments(xmlPath);
@@ -77,6 +84,7 @@ builder.Services.AddSwaggerGen(gen =>
                         new List<string>()
                     }
     });
+
 });
 
 
@@ -125,6 +133,22 @@ builder.Services.AddCors(options => {
             .AllowAnyMethod()
             .AllowAnyHeader();
         });
+});
+
+builder.Services.AddDNTCaptcha(options => {
+    options.UseMemoryCacheStorageProvider()
+    .AbsoluteExpiration(minutes: 7)
+    .ShowThousandsSeparators(false)
+    .WithNoise(0.015f, 0.015f, 1, 0.0f)
+    .WithEncryptionKey("This is my secure key!")
+    .InputNames(
+        new DNTCaptchaComponent
+        {
+            CaptchaHiddenInputName = "dntCaptchaText",
+            CaptchaHiddenTokenName = "dntCaptchaToken",
+            CaptchaInputName = "dntCaptchaInputText"
+        })
+    .Identifier("dntCaptcha");
 });
 
 var app = builder.Build();
