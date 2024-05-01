@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ItemBoxStore.API.Controllers.Swagger
+namespace ItemBoxStore.API.Swagger
 {
     public class ApiExplorerOnlyConvention : IActionModelConvention
     {

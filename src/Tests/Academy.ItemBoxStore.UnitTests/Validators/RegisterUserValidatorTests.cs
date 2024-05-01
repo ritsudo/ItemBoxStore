@@ -21,7 +21,7 @@ namespace Academy.ItemBoxStore.UnitTests.Validators
         {
             //Arrange
             var fixture = new Fixture();
-            var query = fixture.Build<RegisterUserRequest>()
+            var query = fixture.Build<RegisterUserRequestWithCaptcha>()
                 .With(x => x.Login, "Login")
                 .With(x => x.Email, "test@test.com")
                 .With(x => x.Phone, "+912312345678")
@@ -48,7 +48,7 @@ namespace Academy.ItemBoxStore.UnitTests.Validators
         {
             //Arrange
             var fixture = new Fixture();
-            var query = fixture.Build<RegisterUserRequest>()
+            var query = fixture.Build<RegisterUserRequestWithCaptcha>()
                 .With(x => x.Login, "")
                 .With(x => x.Email, "test@test.com")
                 .With(x => x.Phone, "+912312345678")

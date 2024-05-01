@@ -52,7 +52,7 @@ namespace ItemBoxStore.API.Controllers.Items
             }
             catch (Exception ex)
             {
-                _logger.LogError("Ошибка сервера при удалении объявления");
+                _logger.LogError("Ошибка сервера при удалении объявления {ex}", ex);
                 return StatusCode(500);
             }
 

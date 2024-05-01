@@ -59,7 +59,7 @@ namespace ItemBoxStore.API.Controllers.Items
             }
             catch (Exception ex)
             {
-                _logger.LogError("Ошибка сервера при работе с объявлением");
+                _logger.LogError("Ошибка сервера при работе с объявлением {ex}", ex);
                 return StatusCode(500);
             }
         }

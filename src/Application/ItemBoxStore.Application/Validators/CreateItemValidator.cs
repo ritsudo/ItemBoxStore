@@ -15,7 +15,7 @@ namespace ItemBoxStore.Application.Validators
         { 
             RuleFor(x => x.Name)
                 .Length(1,30)
-                .Must(s => s.All(c => char.IsLetter(c) || char.IsWhiteSpace(c)));
+                .Must(s => s.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsDigit(c)));
 
             RuleFor(x => x.SubCategoryId)
                 .NotNull()

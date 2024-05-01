@@ -2,14 +2,15 @@
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ItemBoxStore.API.Controllers.Swagger
+namespace ItemBoxStore.API.Swagger
 {
     public class HideInDocsFilter : IDocumentFilter
     {
 
         public void Apply(OpenApiDocument swaggerDoc, DocumentFilterContext context)
         {
-            foreach (OpenApiPathItem path in swaggerDoc.Paths.Values) {
+            foreach (OpenApiPathItem path in swaggerDoc.Paths.Values)
+            {
                 path.Parameters = null;
             }
         }

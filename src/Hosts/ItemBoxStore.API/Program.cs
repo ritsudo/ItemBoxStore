@@ -1,18 +1,9 @@
 using DNTCaptcha.Core;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using ItemBoxStore.API.Controllers.Swagger;
-using ItemBoxStore.Application.Contexts.Item.Services.Definitions;
-using ItemBoxStore.Application.Contexts.Item.Services.Implementations;
-using ItemBoxStore.Application.Contexts.User.Services;
-using ItemBoxStore.Application.Contexts.User.Services.Definitions;
-using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.API.Swagger;
 using ItemBoxStore.Application.Validators;
 using ItemBoxStore.Infrastructure;
-using ItemBoxStore.Infrastructure.DataAccess.Repositories;
-using ItemBoxStore.Infrastructure.DataAccess.Repositories.Items;
-using ItemBoxStore.Infrastructure.PasswordHasher;
-using ItemBoxStore.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -23,34 +14,13 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddServices();
-builder.Services.AddTransient<IUserService, UserService>();
-builder.Services.AddTransient<IStorageFileService, StorageFileService>();
-builder.Services.AddTransient<IItemService, ItemService>();
-
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IStorageFileRepository, StorageFileRepository>();
-builder.Services.AddScoped<IItemRepository, ItemRepository>();
-
-builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
-
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection")));
-builder.Services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbContext>());
-
-builder.Services.AddTransient<IItemService, ItemService>();
-
-builder.Services.AddControllers(c =>
-        c.Conventions.Add(new ApiExplorerOnlyConvention())
-    );
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers(c => c.Conventions.Add(new ApiExplorerOnlyConvention()));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(gen =>
 {
-    gen.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API - ìàãàçèí", Version = "V1" });
+    gen.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API - ÐœÐ°Ð³Ð°Ð·Ð¸Ð½", Version = "V1" });
 
 
     var xmlFilePath = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -98,16 +68,16 @@ builder.Services.AddAuthentication(options =>
 
         options.RequireHttpsMetadata = true;
         options.SaveToken = true;
+        var jwtKey = builder.Configuration["Jwt:Key"];
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters()
         {
             ValidateIssuer = false,
             ValidateAudience = false,
             ValidAudience = builder.Configuration["Jwt:Audience"],
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey != null ? jwtKey : string.Empty))
         };
-    }
-    );
+    });
 
 builder.Services.AddAuthorization();
 
@@ -125,9 +95,11 @@ builder.Services.AddValidatorsFromAssemblies([
     ]);
 
 
-builder.Services.AddCors(options => {
+builder.Services.AddCors(options =>
+{
     options.AddPolicy("AllowAll",
-        builder => {
+        builder =>
+        {
             builder
             .AllowAnyOrigin()
             .AllowAnyMethod()
@@ -135,7 +107,8 @@ builder.Services.AddCors(options => {
         });
 });
 
-builder.Services.AddDNTCaptcha(options => {
+builder.Services.AddDNTCaptcha(options =>
+{
     options.UseMemoryCacheStorageProvider()
     .AbsoluteExpiration(minutes: 7)
     .ShowThousandsSeparators(false)
@@ -153,7 +126,6 @@ builder.Services.AddDNTCaptcha(options => {
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

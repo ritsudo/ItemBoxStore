@@ -66,7 +66,7 @@ namespace ItemBoxStore.API.Controllers.Items
 
                 var resultFileGuid = await _fileService.UploadAsync(fileDto, cancellationToken);
 
-                if (resultFileGuid == null || resultFileGuid == Guid.Empty)
+                if (resultFileGuid == Guid.Empty)
                 {
                     return StatusCode((int)HttpStatusCode.InternalServerError, "Ошибка на этапе загрузки файла");
                 }
@@ -82,7 +82,7 @@ namespace ItemBoxStore.API.Controllers.Items
             }
             catch (Exception ex)
             {
-                _logger.LogError("Ошибка сервера при изменении объявления");
+                _logger.LogError("Ошибка сервера при изменении объявления {ex}", ex);
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Ошибка сервера при изменении объявления");
             }
 
