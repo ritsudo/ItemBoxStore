@@ -14,24 +14,25 @@ namespace ItemBoxStore.Application.Validators
         public CreateItemValidator() 
         { 
             RuleFor(x => x.Name)
-                .Length(1,30)
-                .Must(s => s.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsDigit(c)));
+                .NotEmpty().WithMessage("Введите название")
+                .Length(3,30).WithMessage("Длина должна быть от 3 до 30 символов")
+                .Must(s => s.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsDigit(c))).WithMessage("Допускаются буквы, цифры, пробелы");
 
             RuleFor(x => x.SubCategoryId)
-                .NotNull()
+                .NotNull().WithMessage("Укажите категорию")
                 .GreaterThan(0)
-                .LessThan(90);
+                .LessThan(11);
 
             RuleFor(x => x.Description)
-                .Length(1, 500);
+                .Length(1, 500).WithMessage("Допускается описание от 1 до 500 символов");
 
             RuleFor(x => x.Location)
-                .Length(1, 50);
+                .Length(1, 50).WithMessage("Длина адреса от 1 до 50 символов");
 
             RuleFor(x => x.Price)
-                .NotNull()
-                .GreaterThan(0)
-                .LessThan(100000000);
+                .NotNull().WithMessage("Стоимость не указана")
+                .GreaterThan(0).WithMessage("Стоимость должна быть больше 0")
+                .LessThan(100000000).WithMessage("Стоимость должна быть меньше 100000000");
         }
     }
 }
