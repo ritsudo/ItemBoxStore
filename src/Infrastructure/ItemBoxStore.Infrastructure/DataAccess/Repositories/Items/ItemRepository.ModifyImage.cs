@@ -8,7 +8,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
     {
         public async Task ModifyImage(ModifyImageRequest model, CancellationToken cancellationToken)
         {
-            var item = await _repository.GetByIdAsync(model.ItemId, cancellationToken);
+            var item = await _readOnlyRepository.GetByIdAsync(model.ItemId, cancellationToken);
             item.MainImageId = model.ImageId;
             await _repository.UpdateAsync(item, cancellationToken);
         }

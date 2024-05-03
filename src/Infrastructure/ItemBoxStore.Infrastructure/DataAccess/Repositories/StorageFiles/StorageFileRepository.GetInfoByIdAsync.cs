@@ -21,7 +21,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         /// <inheritdoc/>
         public Task<FileInfoDto> GetInfoByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            return _repository.GetAll().Where(s => s.Id == id)
+            return _readOnlyRepository.GetAll().Where(s => s.Id == id)
                               .ProjectTo<FileInfoDto>(_mapper.ConfigurationProvider)
                               .FirstOrDefaultAsync(cancellationToken);
         }

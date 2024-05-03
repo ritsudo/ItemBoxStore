@@ -16,15 +16,10 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
     /// <summary>
     /// Репозиторий для файлов
     /// </summary>
-    public partial class StorageFileRepository : IStorageFileRepository
+    public partial class StorageFileRepository(IMapper mapper, IReadOnlyRepository<StorageFile> readOnlyRepository, IRepository<StorageFile> repository) : IStorageFileRepository
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<StorageFile> _repository;
-
-        public StorageFileRepository(IMapper mapper, IRepository<StorageFile> repository)
-        {
-            _mapper = mapper;
-            _repository = repository;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IReadOnlyRepository<StorageFile> _readOnlyRepository = readOnlyRepository;
+        private readonly IRepository<StorageFile> _repository = repository;
     }
 }

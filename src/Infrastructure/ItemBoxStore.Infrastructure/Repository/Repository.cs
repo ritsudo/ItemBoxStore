@@ -32,33 +32,16 @@ namespace ItemBoxStore.Infrastructure.Repository
             await DbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+        public async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
         {
-            var existingEntity = GetByIdAsync(id, cancellationToken).Result;
-
-            if (existingEntity == null)
+            if (entity == null)
             {
-                throw new ArgumentNullException(nameof(existingEntity));
+                throw new ArgumentNullException(nameof(entity));
             }
 
-            DbSet.Remove(existingEntity);
+            DbSet.Remove(entity);
 
             await DbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public IQueryable<TEntity> GetAll()
-        {
-            return DbSet.AsNoTracking();
-        }
-
-        public IQueryable<TEntity> GetFiltered(Expression<Func<TEntity, bool>> predicate)
-        {
-            if (predicate == null)
-            {
-                throw new ArgumentException(nameof(predicate));
-            }
-
-            return DbSet.Where(predicate).AsNoTracking();
         }
 
         public async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken)
@@ -70,11 +53,6 @@ namespace ItemBoxStore.Infrastructure.Repository
 
             DbSet.Update(entity);
             await DbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        public ValueTask<TEntity?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
-        {
-            return DbSet.FindAsync(id);
         }
     }
 }

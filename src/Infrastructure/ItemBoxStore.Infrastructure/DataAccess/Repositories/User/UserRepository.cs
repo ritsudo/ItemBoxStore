@@ -6,16 +6,11 @@ using ItemBoxStore.Infrastructure.Repository;
 namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
 {
     /// <inheritdoc />
-    public partial class UserRepository : IUserRepository
+    /// <inheritdoc/>
+    public partial class UserRepository(IRepository<User> repository, IReadOnlyRepository<User> readOnlyRepository, IMapper mapper) : IUserRepository
     {
-        private readonly IMapper _mapper;
-        private readonly IRepository<User> _repository;
-
-        /// <inheritdoc/>
-        public UserRepository(IRepository<User> repository, IMapper mapper)
-        {
-            _repository = repository;
-            _mapper = mapper;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IReadOnlyRepository<User> _readOnlyRepository = readOnlyRepository;
+        private readonly IRepository<User> _repository = repository;
     }
 }

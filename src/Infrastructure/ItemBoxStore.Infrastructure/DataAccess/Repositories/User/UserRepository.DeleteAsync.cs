@@ -1,4 +1,5 @@
 ﻿using ItemBoxStore.Application.Repositories;
+using ItemBoxStore.Contracts.Users;
 
 namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
 {
@@ -8,7 +9,13 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         /// <inheritdoc/>
         public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            await _repository.DeleteAsync(id, cancellationToken);
+            var entity = await _readOnlyRepository.GetByIdAsync(id, cancellationToken);
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+            
+            await _repository.DeleteAsync(entity, cancellationToken);
         }
     }
 }

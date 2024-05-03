@@ -20,6 +20,7 @@ namespace Academy.ItemBoxStore.UnitTests.RepositoryTests
         private readonly IMapper _mapper;
 
         private IRepository<Item> _repository;
+        private IReadOnlyRepository<Item> _readOnlyRepository;
         private IItemRepository _itemRepository;
 
         public ItemRepositoryTests() {
@@ -47,7 +48,8 @@ namespace Academy.ItemBoxStore.UnitTests.RepositoryTests
             context.SaveChanges();
 
             _repository = new Repository<Item>(context);
-            _itemRepository = new ItemRepository(_repository, _mapper);
+            _readOnlyRepository = new ReadOnlyRepository<Item>(context);
+            _itemRepository = new ItemRepository(_repository, _readOnlyRepository, _mapper);
 
             var request = new GetAllItemsRequest();
             var cancellationToken = new CancellationTokenSource().Token;
@@ -89,7 +91,8 @@ namespace Academy.ItemBoxStore.UnitTests.RepositoryTests
             context.SaveChanges();
 
             _repository = new Repository<Item>(context);
-            _itemRepository = new ItemRepository(_repository, _mapper);
+            _readOnlyRepository = new ReadOnlyRepository<Item>(context);
+            _itemRepository = new ItemRepository(_repository, _readOnlyRepository, _mapper);
 
             var request = new GetAllItemsRequest();
             var cancellationToken = new CancellationTokenSource().Token;

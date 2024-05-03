@@ -19,7 +19,13 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         /// <inheritdoc/>
         public Task DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            return _repository.DeleteAsync(id, cancellationToken);
+            var entity = _readOnlyRepository.GetByIdAsync(id, cancellationToken).Result;
+            if (entity == null)
+            {
+                throw new ArgumentNullException(nameof(entity));
+            }
+
+            return _repository.DeleteAsync(entity, cancellationToken);
         }
     }
 }

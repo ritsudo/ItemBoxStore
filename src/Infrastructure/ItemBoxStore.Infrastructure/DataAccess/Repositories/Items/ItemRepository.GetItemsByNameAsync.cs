@@ -12,7 +12,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 
         public async Task<IEnumerable<ItemDto>> GetItemsByNameAsync(GetItemsByNameRequest request, CancellationToken cancellationToken)
         {
-            var query = _repository.GetAll()
+            var query = _readOnlyRepository.GetAll()
                 .Where(item => item.Name.Equals(request.Name));
 
             return await query

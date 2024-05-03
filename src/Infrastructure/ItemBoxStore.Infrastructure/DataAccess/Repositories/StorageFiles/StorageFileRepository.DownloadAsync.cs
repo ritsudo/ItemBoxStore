@@ -21,7 +21,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         /// <inheritdoc/>
         public Task<FileDto> DownloadAsync(Guid id, CancellationToken cancellationToken)
         {
-            return _repository.GetAll().Where(s => s.Id == id)
+            return _readOnlyRepository.GetAll().Where(s => s.Id == id)
                               .ProjectTo<FileDto>(_mapper.ConfigurationProvider)
                               .FirstOrDefaultAsync(cancellationToken);
         }

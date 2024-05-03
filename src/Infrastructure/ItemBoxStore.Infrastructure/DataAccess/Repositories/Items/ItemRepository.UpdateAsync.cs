@@ -8,7 +8,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
     {
         public async Task UpdateAsync(ItemDto itemDto, CancellationToken cancellationToken)
         {
-            var item = await _repository.GetByIdAsync(itemDto.Id, cancellationToken);
+            var item = await _readOnlyRepository.GetByIdAsync(itemDto.Id, cancellationToken);
             await _repository.UpdateAsync(item, cancellationToken);
         }
 

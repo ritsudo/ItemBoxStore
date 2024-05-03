@@ -14,7 +14,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         {
             var result = new GetAllResponseWithPagination<UserDto>();
 
-            var query = _repository.GetAll();
+            var query = _readOnlyRepository.GetAll();
 
             var totalCount = await query.CountAsync(cancellationToken);
             result.TotalPages = (totalCount / request.BatchSize) + 1;

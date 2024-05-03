@@ -9,7 +9,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories
         /// <inheritdoc/>
         public async Task UpdateAsync(UserDto userDto, CancellationToken cancellationToken)
         {
-            var user = await _repository.GetByIdAsync(userDto.Id, cancellationToken);
+            var user = await _readOnlyRepository.GetByIdAsync(userDto.Id, cancellationToken);
             await _repository.UpdateAsync(user, cancellationToken);
         }
 

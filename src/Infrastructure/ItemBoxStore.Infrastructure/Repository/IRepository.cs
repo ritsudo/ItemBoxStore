@@ -11,7 +11,7 @@ namespace ItemBoxStore.Infrastructure.Repository
     /// Интерфейс для репозитория на запись
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IRepository<TEntity> : IReadOnlyRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class
     {
         /// <summary>
         /// Добавляет элемент <see cref="TEntity"/>
@@ -30,7 +30,7 @@ namespace ItemBoxStore.Infrastructure.Repository
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
+        Task DeleteAsync(TEntity entity, CancellationToken cancellationToken);
 
     }
 }

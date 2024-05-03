@@ -11,7 +11,7 @@ namespace ItemBoxStore.Infrastructure.DataAccess.Repositories.Items
 
         public async Task<ItemDtoDetailed> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
-            return await _repository.GetAll().Where(s => s.Id == id)
+            return await _readOnlyRepository.GetAll().Where(s => s.Id == id)
             .ProjectTo<ItemDtoDetailed>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
         }

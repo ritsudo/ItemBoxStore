@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ItemBoxStore.Application.Repositories;
 using ItemBoxStore.Contracts.Users;
+using ItemBoxStore.Domain.Items;
 using ItemBoxStore.Domain.Users;
 using ItemBoxStore.Infrastructure;
 using ItemBoxStore.Infrastructure.DataAccess.Repositories;
@@ -19,6 +20,7 @@ namespace Academy.ItemBoxStore.UnitTests.RepositoryTests
         private readonly IMapper _mapper;
 
         private IRepository<User> _repository;
+        private IReadOnlyRepository<User> _readOnlyRepository;
         private IUserRepository _userRepository;
 
         public UserRepositoryTests() {
@@ -46,7 +48,8 @@ namespace Academy.ItemBoxStore.UnitTests.RepositoryTests
             context.SaveChanges();
 
             _repository = new Repository<User>(context);
-            _userRepository = new UserRepository(_repository, _mapper);
+            _readOnlyRepository = new ReadOnlyRepository<User>(context);
+            _userRepository = new UserRepository(_repository, _readOnlyRepository, _mapper);
 
             var request = new GetAllUsersRequest();
             var cancellationToken = new CancellationTokenSource().Token;
@@ -87,7 +90,8 @@ namespace Academy.ItemBoxStore.UnitTests.RepositoryTests
             context.SaveChanges();
 
             _repository = new Repository<User>(context);
-            _userRepository = new UserRepository(_repository, _mapper);
+            _readOnlyRepository = new ReadOnlyRepository<User>(context);
+            _userRepository = new UserRepository(_repository, _readOnlyRepository, _mapper);
 
             var request = new GetAllUsersRequest();
             var cancellationToken = new CancellationTokenSource().Token;

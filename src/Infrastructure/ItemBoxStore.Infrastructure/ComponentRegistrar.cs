@@ -38,6 +38,7 @@ namespace ItemBoxStore.Infrastructure
             services.AddScoped<IStorageFileRepository, StorageFileRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
 
+            services.AddScoped(typeof(IReadOnlyRepository<>), typeof(ReadOnlyRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<DbContext>(s => s.GetRequiredService<ApplicationDbContext>());
 
