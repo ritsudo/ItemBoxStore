@@ -25,6 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Application\ItemBoxStore.Application\ItemBoxStore.Application.csproj" />
+    <ProjectReference Include="..\..\Hosts\ItemBoxStore.API\ItemBoxStore.API.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ItemBoxStore.Infrastructure\ItemBoxStore.Infrastructure.csproj" />
   </ItemGroup>
 

@@ -16,6 +16,7 @@ namespace ItemBoxStore.API.Controllers.Users
         public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
         {
             var result = await _userService.GetByIdAsync(id, cancellationToken);
+            result.PasswordHash = "";
             return Ok(result);
         }
     }

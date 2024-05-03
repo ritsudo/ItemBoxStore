@@ -23,6 +23,10 @@ services:
       - 5001:8081
     environment:
       - ConnectionStrings__DbConnection=Server=postgres;Database=itemboxstore;Username=postgres;Password=12345678;Port=5432
+      - Jwt__Audience=AcademyJWTClient
+      - Jwt__Issuer=AcademyJWTAuthenticationServer
+      - Jwt__Key=0d5227622bd7c769d40e789da5b1f4a70d343050ca8a44618ba49ab896c15e04
+      - Jwt__Subject=JWTServiceAccessToken
     depends_on:
       - "postgres"
       

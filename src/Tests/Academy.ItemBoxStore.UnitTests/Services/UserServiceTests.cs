@@ -21,7 +21,7 @@ namespace Academy.ItemBoxStore.UnitTests.Services
         public UserServiceTests()
         {
             //Настройка Mock'ов
-            Mock<IMapper> mapper = new Mock<IMapper>();
+            Mock<IMapper> mapper = new();
             _userRepositoryMock = new Mock<IUserRepository>();
             _userService = new UserService(_userRepositoryMock.Object, mapper.Object);
         }
