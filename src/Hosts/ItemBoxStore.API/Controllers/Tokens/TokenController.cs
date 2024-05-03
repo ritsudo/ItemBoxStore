@@ -56,12 +56,18 @@ namespace ItemBoxStore.API.Controllers.Tokens
                 return StatusCode((int)HttpStatusCode.Forbidden, "Введён неправильный логин или пароль");
             }
 
+            var role = "User";
+            if (user.Login == "admin")
+            {
+                role = "Admin";
+            }
+
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(ClaimTypes.Name, "User"),
-                new Claim(ClaimTypes.Role, "User"),
+                new Claim(ClaimTypes.Role, role),
                 new Claim("UserId", user.Id.ToString()),
                 new Claim("UserName", user.Login)
             };

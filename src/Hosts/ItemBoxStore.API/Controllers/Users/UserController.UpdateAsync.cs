@@ -1,5 +1,6 @@
 ﻿using ItemBoxStore.Application.Contexts.User.Services;
 using ItemBoxStore.Contracts.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItemBoxStore.API.Controllers.Users
@@ -12,6 +13,7 @@ namespace ItemBoxStore.API.Controllers.Users
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id:Guid}")]
         public async Task<IActionResult> UpdateAsync(UserDto model, CancellationToken cancellationToken)
         {

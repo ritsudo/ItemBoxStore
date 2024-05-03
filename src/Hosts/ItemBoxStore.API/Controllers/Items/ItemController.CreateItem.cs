@@ -16,7 +16,7 @@ namespace ItemBoxStore.API.Controllers.Items
         /// <param name="model"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        [Authorize]//(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         [ProducesResponseType(typeof(ItemDto), (int)HttpStatusCode.Created)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]

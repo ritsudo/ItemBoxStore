@@ -40,6 +40,11 @@ namespace ItemBoxStore.API.Controllers.Items
 
                 var item = await _itemService.GetByIdAsync(id, cancellationToken);
 
+                if (item == null)
+                {
+                    return NotFound();
+                }
+
                 if (item.AuthorId != userGuid)
                 {
                     _logger.LogInformation("Попытка удалить не своё объявление пользователем {UserId}", userId);

@@ -17,7 +17,14 @@ namespace ItemBoxStore.Application.Contexts.User.Services
         /// <inheritdoc/>
         public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            await _userRepository.DeleteAsync(id, cancellationToken);
+            try
+            {
+
+                await _userRepository.DeleteAsync(id, cancellationToken);
+            }
+            catch {
+                throw new ArgumentNullException(nameof(id));
+            }
         }
     }
 }
