@@ -27,7 +27,6 @@ namespace ApiIntegrationTests
 
             // Act
             var response = await httpClient.GetAsync("User/d6362612-796e-4b27-bcce-88f0d9d7a3a0", CancellationToken.None);
-            var users = await response.Content.ReadFromJsonAsync<UserDto>();
 
             // Assert
             Assert.NotNull(response);

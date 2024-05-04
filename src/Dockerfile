@@ -20,24 +20,18 @@ COPY ["src/Tests/Academy.ItemBoxStore.UnitTests/Academy.ItemBoxStore.UnitTests.c
 
 RUN dotnet restore "./Hosts/ItemBoxStore.API/ItemBoxStore.API.csproj"
 COPY ./src/ .
-########
-#WORKDIR "/src/DbMigrator"
-#RUN dotnet build "./ItemBoxStore.DbMigrator.csproj" -c $BUILD_CONFIGURATION -o /app/build
-########
 WORKDIR "/src/Hosts/ItemBoxStore.API"
 RUN dotnet build "./ItemBoxStore.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-########
-#WORKDIR "/src/DbMigrator"
-#RUN dotnet publish "./ItemBoxStore.DbMigrator.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-########
 WORKDIR "/src/Hosts/ItemBoxStore.API"
 RUN dotnet publish "./ItemBoxStore.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
-# To run migrator execute manually 'dotnet ItemBoxStore.DbMigrator.dll'
 COPY --from=publish /app/publish .
+COPY "src/Hosts/ItemBoxStore.API/Assets/Tahoma.ttf" "/app/Assets/Tahoma.ttf"
+COPY "src/Hosts/ItemBoxStore.API/Assets/libSkiaSharp.so" "/app/libSkiaSharp.so"
+COPY "src/Hosts/ItemBoxStore.API/Assets/libHarfBuzzSharp.so" "/app/libHarfBuzzSharp.so"
 ENTRYPOINT ["dotnet", "ItemBoxStore.API.dll"]

@@ -28,12 +28,26 @@ services:
       - 5001:8081
     environment:
       - ConnectionStrings__DbConnection=Server=postgres;Database=itemboxstore;Username=postgres;Password=1p2o3s4t5g6r7e8s9;Port=5432
+      - ConnectionStrings__Redis=redis:6379
       - Jwt__Audience=AcademyJWTClient
       - Jwt__Issuer=AcademyJWTAuthenticationServer
       - Jwt__Key=0d5227622bd7c769d40e789da5b1f4a70d343050ca8a44618ba49ab896c15e04
       - Jwt__Subject=JWTServiceAccessToken
+      - Logging__LogLevel__Default=Warning
+      - Logging__LogLevel__Microsoft.AspNetCore=Warning
+      - Logging__LogLevel__Academy.ItemBoxStore=Warning
     depends_on:
       - "postgres"
+      - "redis"
+      
+  migrator:
+    build:
+      context: .
+      dockerfile: src/DbMigrator/Dockerfile
+    environment:
+      - ConnectionStrings__DbConnection=Server=postgres;Database=itemboxstore;Username=postgres;Password=1p2o3s4t5g6r7e8s9;Port=5432
+    depends_on:
+      - "api"
       
   ui:
     build:

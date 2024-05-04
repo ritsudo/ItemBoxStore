@@ -107,9 +107,16 @@ builder.Services.AddCors(options =>
         });
 });
 
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    options.InstanceName = "local";
+});
+
 builder.Services.AddDNTCaptcha(options =>
 {
-    options.UseMemoryCacheStorageProvider()
+    options.UseDistributedCacheStorageProvider()
+    .UseCustomFont("Assets/Tahoma.ttf")
     .AbsoluteExpiration(minutes: 7)
     .ShowThousandsSeparators(false)
     .WithNoise(0.015f, 0.015f, 1, 0.0f)
