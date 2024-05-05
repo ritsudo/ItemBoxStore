@@ -16,6 +16,7 @@
 - .NET 8
 - PostgreSQL 16
 - Angular 17
+- Redis 7
 
 # Тестирование:
 - 29 Unit тестов
